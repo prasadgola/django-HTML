@@ -1,0 +1,224 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html >
+       <head>
+           <meta charset="UTF-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1">
+           <link rel="stylesheet" type="text/css" href="{% static 'css/connect.css' %}">
+             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+<body>
+  <!--header -->    
+    <div class="header">
+        <nav>
+            <img src="{%static 'css/jvtlogo.jpg' %}" height="67px">
+             <ul class="">
+                {% if user.is_authenticated %}
+                  <li><a>{{ user.username }}</a></li>
+                {% endif %}
+                <form action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button name="logout" type="submit">Logout</button>
+                </form>
+               <li><a href="view-report.html">View Report</a> </li>
+               <li><a href="contactus.html">Need help?</a> </li>
+             </ul>  
+        </nav>  
+    </div>
+   
+    
+   <div class="jvtconnect">
+    <h1>JVTConnect</h1>
+    </div>
+   
+    
+        <div>
+            <button class="jvt-culture">JVT Cultural<br>Activity</button>
+        </div>
+
+<!-- onetoone -->
+
+<div>
+        <button class="one-one" onclick="openForm()">one to one</button>
+           <div  class="one--one" id="myForm">
+                <form action="{% url 'jvtconnect' %}" class="form-container" method = "post">
+                  {% csrf_token %}
+                      <h1>One To One</h1>
+                      <input type="text" placeholder="With whom" name = "partner"><br>
+                      <input type="text" placeholder="Topic" name = "Topic"><br>
+                      <input type="number" placeholder="Duration in min" name = "Time"><br>
+                      <input type="date" placeholder="date" name = "Date"><br>
+                    <button type = "submit" class="btn cancel" onclick="closeForm()">save</button>
+                    <button type = "button" class="btn cancel" onclick="closeForm()">Close</button>
+               </form>
+           </div>
+        
+        <script>
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+        
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+        </script>
+        
+ </div>
+<!--daily presentation-------->
+       <div>
+           <button class="daily" onclick="ondaily()">Daily<br>Presentation</button> 
+              <div class="daily-p" id="day">
+                  <form action="" class="daily-cont">
+                    <h2>Daily Presentation</h2>
+                    <input type="text" placeholder="Topic name" ><br>
+                    <input type="text" placeholder="Duration"><br>
+                    <input type="time" placeholder="Time"><br>
+                    <input type="date" placeholder="date"><br>
+                    <button type="button" class="btn cancel" onclick="closedai()">Close</button>
+                  </form>
+              </div>
+
+              <script>
+                function ondaily() {
+                  document.getElementById("day").style.display = "block";
+                }
+                
+                function closedai() {
+                  document.getElementById("day").style.display = "none";
+                }
+                </script>
+       </div>
+
+
+<!--weekly presentation-->
+<div>
+       <button class="weekly" onclick="onweek()">Weekly<br>Presentation</button>
+          <div class="weekly-p"  id="week">
+              <form action="" class="weekly-cont">
+                {% csrf_token %}
+                <h2>Weekly Presentation</h2>
+                <input type="text" placeholder="Topic name" name = "Topicname" ><br>
+                <input type="text" placeholder="Duration in min" name = "Time"><br>
+                <input type="date" placeholder="date" name = "Date"><br>
+                <button type = "submit" class="btn cancel" onclick="closeweek()">save</button>
+                <button type = "button" class="btn cancel" onclick="closeweek()">Close</button>
+              </form>
+          </div>
+
+          <script>
+            function onweek() {
+              document.getElementById("week").style.display = "block";
+            }
+            
+            function closeweek() {
+              document.getElementById("week").style.display = "none";
+            }
+            </script>
+
+</div>
+
+<!-- socials -->
+
+<div>
+    <button class="social" onclick="onsocial()">Social's</button>
+         <div class="soc" id="socials">
+             <form action="" class="social-cont">
+                <h2>Social's</h2>
+                <input type="text" placeholder="Place" ><br>
+                <input type="text" placeholder="Discussed about"><br>
+                <input type="time" placeholder="Time"><br>
+                <input type="date" placeholder="date"><br>
+                <button type="button" class="btn cancel" onclick="closesocials()">Close</button>
+              </form>
+             </form>
+         </div>
+         <script>
+            function onsocial() {
+              document.getElementById("socials").style.display = "block";
+            }
+            
+            function closesocials() {
+              document.getElementById("socials").style.display = "none";
+            }
+            </script>
+</div>
+
+
+<div>
+
+<!-- visitors -->
+
+</div>
+     <button class="visitor-b" onclick="onvisitor()">Visitors</button>
+         <div class="visitor" id="vis">
+             <form action="" class="visitor-cont">
+                <h2>Visitors</h2>
+                <input type="number" placeholder="How many visitors" ><br>
+                <input type="text" placeholder="presentation on"><br>
+                <input type="time" placeholder="Time"><br>
+                <input type="date" placeholder="date"><br>
+                <button type="button" class="btn cancel" onclick="closevisitor()">Close</button>
+             </form>
+         </div>
+
+         <script>
+            function onvisitor() {
+              document.getElementById("vis").style.display = "block";
+            }
+            
+            function closevisitor() {
+              document.getElementById("vis").style.display = "none";
+            }
+            </script>
+      </div>      
+ 
+      
+<!-- referrals taken -->
+
+ <div>     
+    <button class="given" onclick="ongiven()">Referrals<br> Given</button>
+        <div class="R-given" id="give">
+            <form action="" class="given-cont">
+               <h2>Referrals Given</h2>
+               <input type="number" placeholder="" ><br>
+               <input type="text" placeholder="presentation on"><br>
+               <input type="time" placeholder="Time"><br>
+               <input type="date" placeholder="date"><br>
+               <button type="button" class="btn cancel" onclick="closegiven()">Close</button>
+            </form>
+        </div>
+
+        <script>
+           function ongiven() {
+             document.getElementById("give").style.display = "block";
+           }
+           
+           function closegiven() {
+             document.getElementById("give").style.display = "none";
+           }
+           </script>
+     </div>     
+     
+
+<!-- ontaken -->
+  
+ <div>     
+        <a class="taken" onclick="ontaken();">Referrals<br> Taken</a>
+            <div class="R-taken" id="taken">
+                <form action="login.html" class="taken-cont">
+                   <h2>Referrals Taken</h2>
+                   <input type="number" placeholder="" ><br>
+                   <input type="text" placeholder=""><br>
+                   <input type="time" placeholder="Time"><br>
+                   <input type="date" placeholder="date"><br>
+                   <button type="button" class="btn save">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <button type="button" class="btn cancel" onclick="closetaken();">Close</button>
+                </form>
+            </div>
+           <script src="home.js"></script>
+            
+         </div>      
+
+</body>   
+</html>    
