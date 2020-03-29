@@ -16,5 +16,6 @@ urlpatterns = [
     path('signup',views.signup, name = 'signup'),
     path('logout',views.signout, name = 'logout'),
     path('jvtconnect',views.jvtconnect, name = 'jvtconnect'),
-
+    path('onetoone', views.one2one, name = 'onetoone'),
+    path('weeklypresentation', views.weeklypre, name = 'weeklypresentation'),
 ]

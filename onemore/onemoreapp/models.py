@@ -40,7 +40,7 @@ class onetoone(models.Model):
 
 class weeklypresentation(models.Model):
     weeklypresentationid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
-    userid = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
     weektopic = models.CharField(max_length=100)
     weekduration = models.PositiveIntegerField(null=True, blank=True)
     weekdate = models.DateField(null = True)

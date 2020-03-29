@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
-from onemoreapp.models import Gola,Person,users,onetoone#, weeklypresentation
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from onemoreapp.models import Gola,Person,users,onetoone, weeklypresentation
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -90,18 +90,70 @@ def signout(request):
 	return HttpResponseRedirect(reverse('signin'))
 
 def jvtconnect(request):
+	return render(request,"connect.html")
+
+
+
+def one2one(request):
 	if request.method == "POST":
 		one2one = onetoone()
-		from signup import register
-		one2one.user = register
+		one2one.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
 		one2one.partner = request.POST['partner']
 		one2one.onetopic = request.POST['Topic']
 		one2one.oneduration = request.POST['Time']
 		one2one.onedate = request.POST['Date']
 		one2one.save()
-		# one2one.user = users.objects.raw('select user_id from onemoreapp_users where username = request.user')
-		return HttpResponseRedirect(reverse('jvtconnect'))
-	return render(request,"connect.html")
+		return HttpResponseRedirect('jvtconnect')
+
+
+def weeklypre(request):
+	if request.method == "POST":
+		week = weeklypresentation()
+		week.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		week.weektopic= request.POST['Topicname']
+		week.weekduration= request.POST['Time']
+		week.weekdate= request.POST['Date']
+		week.save()
+		return HttpResponseRedirect('jvtconnect')
+
+
+
+# def (request):
+# 	if request.method == "POST":
+# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+# 		.save()
+# 		return HttpResponseRedirect('jvtconnect')
+
+
+
+# def (request):
+# 	if request.method == "POST":
+# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+# 		.save()
+# 		return HttpResponseRedirect('jvtconnect')
+
+
+# def (request):
+# 	if request.method == "POST":
+# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+# 		.save()
+# 		return HttpResponseRedirect('jvtconnect')
+
+
+# def (request):
+# 	if request.method == "POST":
+# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+# 		.save()
+# 		return HttpResponseRedirect('jvtconnect')
+
+
+# def (request):
+# 	if request.method == "POST":
+# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+# 		.save()
+# 		return HttpResponseRedirect('jvtconnect')
+
+
 
 
 

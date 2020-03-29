@@ -42,7 +42,7 @@
 <div>
         <button class="one-one" onclick="openForm()">one to one</button>
            <div  class="one--one" id="myForm">
-                <form action="{% url 'jvtconnect' %}" class="form-container" method = "post">
+                <form action="{% url 'onetoone' %}" class="form-container" method = "post">
                   {% csrf_token %}
                       <h1>One To One</h1>
                       <input type="text" placeholder="With whom" name = "partner"><br>
@@ -69,7 +69,7 @@
        <div>
            <button class="daily" onclick="ondaily()">Daily<br>Presentation</button> 
               <div class="daily-p" id="day">
-                  <form action="" class="daily-cont">
+                  <form action="" class="daily-cont" method = "post">
                     <h2>Daily Presentation</h2>
                     <input type="text" placeholder="Topic name" ><br>
                     <input type="text" placeholder="Duration"><br>
@@ -95,11 +95,11 @@
 <div>
        <button class="weekly" onclick="onweek()">Weekly<br>Presentation</button>
           <div class="weekly-p"  id="week">
-              <form action="" class="weekly-cont">
+              <form action="{% url 'weeklypresentation' %}" class="weekly-cont" method = "post">
                 {% csrf_token %}
                 <h2>Weekly Presentation</h2>
                 <input type="text" placeholder="Topic name" name = "Topicname" ><br>
-                <input type="text" placeholder="Duration in min" name = "Time"><br>
+                <input type="number" placeholder="Duration in min" name = "Time"><br>
                 <input type="date" placeholder="date" name = "Date"><br>
                 <button type = "submit" class="btn cancel" onclick="closeweek()">save</button>
                 <button type = "button" class="btn cancel" onclick="closeweek()">Close</button>
@@ -123,7 +123,7 @@
 <div>
     <button class="social" onclick="onsocial()">Social's</button>
          <div class="soc" id="socials">
-             <form action="" class="social-cont">
+             <form action="" class="social-cont" method = "post">
                 <h2>Social's</h2>
                 <input type="text" placeholder="Place" ><br>
                 <input type="text" placeholder="Discussed about"><br>
@@ -152,7 +152,7 @@
 </div>
      <button class="visitor-b" onclick="onvisitor()">Visitors</button>
          <div class="visitor" id="vis">
-             <form action="" class="visitor-cont">
+             <form action="" class="visitor-cont" method = "post">
                 <h2>Visitors</h2>
                 <input type="number" placeholder="How many visitors" ><br>
                 <input type="text" placeholder="presentation on"><br>
@@ -179,7 +179,7 @@
  <div>     
     <button class="given" onclick="ongiven()">Referrals<br> Given</button>
         <div class="R-given" id="give">
-            <form action="" class="given-cont">
+            <form action="" class="given-cont" method = "post">
                <h2>Referrals Given</h2>
                <input type="number" placeholder="" ><br>
                <input type="text" placeholder="presentation on"><br>
@@ -206,7 +206,7 @@
  <div>     
         <a class="taken" onclick="ontaken();">Referrals<br> Taken</a>
             <div class="R-taken" id="taken">
-                <form action="login.html" class="taken-cont">
+                <form action="login.html" class="taken-cont" method = "post">
                    <h2>Referrals Taken</h2>
                    <input type="number" placeholder="" ><br>
                    <input type="text" placeholder=""><br>
