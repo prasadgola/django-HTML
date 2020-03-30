@@ -46,3 +46,55 @@ class weeklypresentation(models.Model):
     weekdate = models.DateField(null = True)
 
     # def __str__(self): return "%s" (self.weeklypresentationid)
+
+
+class dailypresentation(models.Model):
+    dailypresentationid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    dailytopic = models.CharField(max_length=100)
+    dailyduration = models.PositiveIntegerField(null=True, blank=True)
+    dailydate = models.DateField(null = True)
+
+
+
+class socials(models.Model):
+    socialsid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    socialsplace = models.CharField(max_length=100)
+    socialstopic = models.CharField(max_length=100)
+    socialsduration = models.PositiveIntegerField(null=True, blank=True)
+    socialsdate = models.DateField(null = True)
+
+
+
+class visitors(models.Model):
+    visitorsid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    visitorscount = models.PositiveIntegerField(null=True, blank=True)
+    visitorstopic = models.CharField(max_length=100)
+    visitorsduration = models.PositiveIntegerField(null=True, blank=True)
+    visitorsdate = models.DateField(null = True)
+
+
+
+class referralsgiven(models.Model):
+    referralsgivenid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    givencount = models.PositiveIntegerField(null=True, blank=True)
+    giventopic = models.CharField(max_length=100)
+    givenduration = models.PositiveIntegerField(null=True, blank=True)
+    givendate = models.DateField(null = True)
+
+
+
+class referralstaken(models.Model):
+    referralstakenid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    takencount = models.PositiveIntegerField(null=True, blank=True)
+    takentopic = models.CharField(max_length=100)
+    takenduration = models.PositiveIntegerField(null=True, blank=True)
+    takendate = models.DateField(null = True)
+
+
+
+

@@ -18,4 +18,9 @@ urlpatterns = [
     path('jvtconnect',views.jvtconnect, name = 'jvtconnect'),
     path('onetoone', views.one2one, name = 'onetoone'),
     path('weeklypresentation', views.weeklypre, name = 'weeklypresentation'),
+    path('dailypresentation', views.dailypre, name = 'dailypresentation'),
+    path('socials', views.social, name = 'socials'),
+    path('visitors', views.visitor, name = 'visitors'),
+    path('referralsgiven', views.given, name = 'referralsgiven'),
+    path('referralstaken', views.taken, name = 'referralstaken'),
 ]

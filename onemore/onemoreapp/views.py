@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
-from onemoreapp.models import Gola,Person,users,onetoone, weeklypresentation
+from onemoreapp.models import Gola,Person,users,onetoone, weeklypresentation, dailypresentation, socials, visitors, referralsgiven, referralstaken
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -118,40 +118,64 @@ def weeklypre(request):
 
 
 
-# def (request):
-# 	if request.method == "POST":
-# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-# 		.save()
-# 		return HttpResponseRedirect('jvtconnect')
+def dailypre(request):
+	if request.method == "POST":
+		daily = dailypresentation()
+		daily.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		daily.dailytopic = request.POST['Topic']
+		daily.dailyduration = request.POST['Time']
+		daily.dailydate = request.POST['Date']
+		daily.save()
+		return HttpResponseRedirect('jvtconnect')
 
 
 
-# def (request):
-# 	if request.method == "POST":
-# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-# 		.save()
-# 		return HttpResponseRedirect('jvtconnect')
+def social(request):
+	if request.method == "POST":
+		social_s = socials()
+		social_s.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		social_s.socialsplace = request.POST['place']
+		social_s.socialstopic = request.POST['Topicname']
+		social_s.socialsduration = request.POST['Time']
+		social_s.socialsdate = request.POST['Date']
+		social_s.save()
+		return HttpResponseRedirect('jvtconnect')
 
 
-# def (request):
-# 	if request.method == "POST":
-# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-# 		.save()
-# 		return HttpResponseRedirect('jvtconnect')
+def visitor(request):
+	if request.method == "POST":
+		visitor_s = visitors()
+		visitor_s.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		visitor_s.visitorscount = request.POST['howmany']
+		visitor_s.visitorstopic = request.POST['Topicname']
+		visitor_s.visitorsduration = request.POST['Time']
+		visitor_s.visitorsdate = request.POST['Date']
+		visitor_s.save()
+		return HttpResponseRedirect('jvtconnect')
 
 
-# def (request):
-# 	if request.method == "POST":
-# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-# 		.save()
-# 		return HttpResponseRedirect('jvtconnect')
+def given(request):
+	if request.method == "POST":
+		give = referralsgiven()
+		give.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		give.givencount = request.POST['howmany']
+		give.giventopic = request.POST['Topicname']
+		give.givenduration = request.POST['Time']
+		give.givendate = request.POST['Date']
+		give.save()
+		return HttpResponseRedirect('jvtconnect')
 
 
-# def (request):
-# 	if request.method == "POST":
-# 		.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-# 		.save()
-# 		return HttpResponseRedirect('jvtconnect')
+def taken(request):
+	if request.method == "POST":
+		take = referralstaken()
+		take.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		take.takencount = request.POST['howmany']
+		take.takentopic = request.POST['Topicname']
+		take.takenduration = request.POST['Time']
+		take.takendate = request.POST['Date']
+		take.save()
+		return HttpResponseRedirect('jvtconnect')
 
 
 
