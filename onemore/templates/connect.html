@@ -4,7 +4,7 @@
        <head>
            <meta charset="UTF-8">
            <meta name="viewport" content="width=device-width, initial-scale=1">
-           <link rel="stylesheet" type="text/css" href="{% static 'css/connect.css' %}">
+           <link rel="stylesheet" type="text/css" href="{% static 'css/connec.css' %}">
              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       </head>
@@ -12,17 +12,14 @@
   <!--header -->    
     <div class="header">
         <nav>
-            <img src="{%static 'css/jvtlogo.jpg' %}" height="67px">
+            <a href = "https://www.jvtechnologies.co.in/"><img src="{%static 'css/jvtlogo.jpg' %}" height="67px"></a>
              <ul class="">
                 {% if user.is_authenticated %}
-                  <li><a>{{ user.username }}</a></li>
+                  <li><a href="{% url 'viewreport' %}">{{ user.username }}</a></li>
                 {% endif %}
-                <form action="{% url 'logout' %}">
-                  {% csrf_token %}
-                  <button name="logout" type="submit">Logout</button>
-                </form>
-               <li><a href="view-report.html">View Report</a> </li>
-               <li><a href="contactus.html">Need help?</a> </li>
+                  <li><a href="{% url 'logout' %} ">Logout</a></li>
+                  <li><a href="{% url 'viewreport' %}">View Report</a></li>
+                  <!-- <li><a href="">Need help?</a> </li> -->
              </ul>  
         </nav>  
     </div>

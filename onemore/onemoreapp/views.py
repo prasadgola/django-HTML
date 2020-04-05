@@ -93,6 +93,40 @@ def jvtconnect(request):
 	return render(request,"connect.html")
 
 
+def viewreport(request):
+	o = onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}')[len(onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}'))-1]
+	w = weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}')[len(weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}'))-1]
+	d = dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}')[len(dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}'))-1]
+	s = socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}')[len(socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}'))-1]
+	v = visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}')[len(visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}'))-1]
+	rg = referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}')[len(referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}'))-1]
+	rt = referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}')[len(referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}'))-1]
+	content = {
+		'onetopic' : o.onetopic,
+		'onetime' : o.oneduration,
+		'onedate' : o.onedate,
+		'weeklytopic' : w.weektopic,
+		'weeklytime' : w.weekduration,
+		'weeklydate' :w.weekdate,
+		'dailytopic' : d.dailytopic,
+		'dailytime' : d.dailyduration,
+		'dailydate' : d.dailydate,
+		'soctopic' : s.socialstopic,
+		'soctime' : s.socialsduration,
+		'socdate' : s.socialsdate,
+		'vistopic' : v.visitorstopic,
+		'vistime' : v.visitorsduration,
+		'visdate' : v.visitorsdate,
+		'refgtopic' : rg.giventopic,
+		'refgtime' : rg.givenduration,
+		'refgdate' : rg.givendate,
+		'refttopic' : rt.takentopic,
+		'refttime' : rt.takenduration,
+		'reftdate' : rt.takendate
+	}
+	return render(request,"view-report.html",content)
+
+
 
 def one2one(request):
 	if request.method == "POST":
