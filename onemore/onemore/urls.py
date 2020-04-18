@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from onemoreapp import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 admin.site.site_header = 'jvt connect admin'
 admin.site.site_title = 'jvt connect admin'
@@ -24,4 +26,6 @@ urlpatterns = [
     path('visitors', views.visitor, name = 'visitors'),
     path('referralsgiven', views.given, name = 'referralsgiven'),
     path('referralstaken', views.taken, name = 'referralstaken'),
-]
+    path('profile',views.profile, name = 'profile'),
+    path('edit',views.edit, name = 'edit'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

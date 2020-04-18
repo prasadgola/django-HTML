@@ -6,6 +6,7 @@
            <meta name="viewport" content="width=device-width, initial-scale=1">
            <link rel="stylesheet" type="text/css" href="{% static 'css/connec.css' %}">
              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+           <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       </head>
 <body>
@@ -15,10 +16,10 @@
             <a href = "https://www.jvtechnologies.co.in/"><img src="{%static 'css/jvtlogo.jpg' %}" height="67px"></a>
              <ul class="">
                 {% if user.is_authenticated %}
-                  <li><a href="{% url 'viewreport' %}">{{ user.username }}</a></li>
+                  <li><a href="{% url 'profile' %}"><img src="{{ image }}" width="50" height="50" class="circular--square"></a></li>
                 {% endif %}
-                  <li><a href="{% url 'logout' %} ">Logout</a></li>
                   <li><a href="{% url 'viewreport' %}">View Report</a></li>
+                  <li><a href="{% url 'logout' %} ">Logout</a></li>
                   <!-- <li><a href="">Need help?</a> </li> -->
              </ul>  
         </nav>  

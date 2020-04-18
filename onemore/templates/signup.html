@@ -10,7 +10,7 @@
 	<h1>REGISTER HERE </h1>
 
 	<div class="register">
-		<form action="{% url 'signup' %}" method="post">
+		<form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
 		<label> First name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			<input type="text" name="firstname" id="name" placeholder="first name"><br><br>

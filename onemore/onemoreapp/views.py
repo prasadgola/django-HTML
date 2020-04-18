@@ -53,7 +53,7 @@ def user_login(request):
 
 
 def signup(request):
-	if request.method == "POST":
+	if request.method == "POST" and request.FILES:
 		register = users()
 		register.firstname = request.POST['firstname']
 		register.lastname = request.POST['lastname']
@@ -63,7 +63,7 @@ def signup(request):
 		register.specialization = request.POST['stream']
 		register.username = request.POST['email']
 		register.password = request.POST['password']
-		register.image = request.POST['image']
+		register.image = request.FILES['image']
 		register.save()
 		user = User.objects.create_user(register.username,register.username,register.password)
 		user.save()
@@ -90,42 +90,11 @@ def signout(request):
 	return HttpResponseRedirect(reverse('signin'))
 
 def jvtconnect(request):
-	return render(request,"connect.html")
-
-
-def viewreport(request):
-	o = onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}')[len(onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}'))-1]
-	w = weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}')[len(weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}'))-1]
-	d = dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}')[len(dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}'))-1]
-	s = socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}')[len(socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}'))-1]
-	v = visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}')[len(visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}'))-1]
-	rg = referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}')[len(referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}'))-1]
-	rt = referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}')[len(referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}'))-1]
+	details = users.objects.get(user_id = request.user.id)
 	content = {
-		'onetopic' : o.onetopic,
-		'onetime' : o.oneduration,
-		'onedate' : o.onedate,
-		'weeklytopic' : w.weektopic,
-		'weeklytime' : w.weekduration,
-		'weeklydate' :w.weekdate,
-		'dailytopic' : d.dailytopic,
-		'dailytime' : d.dailyduration,
-		'dailydate' : d.dailydate,
-		'soctopic' : s.socialstopic,
-		'soctime' : s.socialsduration,
-		'socdate' : s.socialsdate,
-		'vistopic' : v.visitorstopic,
-		'vistime' : v.visitorsduration,
-		'visdate' : v.visitorsdate,
-		'refgtopic' : rg.giventopic,
-		'refgtime' : rg.givenduration,
-		'refgdate' : rg.givendate,
-		'refttopic' : rt.takentopic,
-		'refttime' : rt.takenduration,
-		'reftdate' : rt.takendate
+	'image' : details.image.url,
 	}
-	return render(request,"view-report.html",content)
-
+	return render(request,"connect.html",content)
 
 
 def one2one(request):
@@ -212,6 +181,87 @@ def taken(request):
 		return HttpResponseRedirect('jvtconnect')
 
 
+def viewreport(request):
+	o = onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}')[len(onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}'))-1]
+	w = weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}')[len(weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}'))-1]
+	d = dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}')[len(dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}'))-1]
+	s = socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}')[len(socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}'))-1]
+	v = visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}')[len(visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}'))-1]
+	rg = referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}')[len(referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}'))-1]
+	rt = referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}')[len(referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}'))-1]
+	content = {
+		'onetopic' : o.onetopic,
+		'onetime' : o.oneduration,
+		'onedate' : o.onedate,
+		'weeklytopic' : w.weektopic,
+		'weeklytime' : w.weekduration,
+		'weeklydate' :w.weekdate,
+		'dailytopic' : d.dailytopic,
+		'dailytime' : d.dailyduration,
+		'dailydate' : d.dailydate,
+		'soctopic' : s.socialstopic,
+		'soctime' : s.socialsduration,
+		'socdate' : s.socialsdate,
+		'vistopic' : v.visitorstopic,
+		'vistime' : v.visitorsduration,
+		'visdate' : v.visitorsdate,
+		'refgtopic' : rg.giventopic,
+		'refgtime' : rg.givenduration,
+		'refgdate' : rg.givendate,
+		'refttopic' : rt.takentopic,
+		'refttime' : rt.takenduration,
+		'reftdate' : rt.takendate
+	}
+	return render(request,"view-report.html",content)
+
+
+
+def profile(request):
+	details = users.objects.get(user_id = request.user.id)
+	# import pdb; pdb.set_trace()
+	content = {
+		'username' : details.username,
+		'password' : details.password,
+		'firstname' : details.firstname,
+		'lastname' : details.lastname,
+		'birthday' : details.birthday,
+		'gender' : details.gender,
+		'phonenumber' : details.phonenumber,
+		'specialization' : details.specialization,
+		'image' : details.image.url,
+	}
+
+
+	return render(request,"profile.html",content)
+
+def edit(request):
+	details = users.objects.get(user_id = request.user.id)
+	content = {
+		'username' : details.username,
+		'password' : details.password,
+		'firstname' : details.firstname,
+		'lastname' : details.lastname,
+		'birthday' : details.birthday,
+		'gender' : details.gender,
+		'phonenumber' : details.phonenumber,
+		'specialization' : details.specialization,
+		'image' : details.image.url,
+	}
+
+	
+	if request.method == "POST" and request.FILES:
+		details.username = request.POST['email']
+		details.password = request.POST['password']
+		details.firstname = request.POST['firstname']
+		details.lastname = request.POST['lastname'] 
+		details.birthday = request.POST['birthday']
+		details.gender = request.POST['gender']
+		details.phonenumber = request.POST['phonenumber']
+		details.specialization = request.POST['stream']
+		details.image = request.FILES['image']
+		details.save()
+		return HttpResponseRedirect(reverse('edit'))
+	return render(request,"edit.html",content)
 
 
 

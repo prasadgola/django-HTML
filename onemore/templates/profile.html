@@ -1,0 +1,64 @@
+<!-- {% load staticfiles %} -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+	<title></title>
+</head>
+<body>
+<td>{{username}}</td></br>
+<td>{{password}}</td></br>
+<td>{{firstname}}</td></br>
+<td>{{lastname}}</td></br>
+<td>{{birthday}}</td></br>
+<td>{{gender}}</td></br>
+<td>{{phonenumber}}</td></br>
+<td>{{specialization}}</td></br> -->
+<!-- <img src="{{ image }}" width="53" height="53" class="circular--square">
+</body>
+</html> -->
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>profile form</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/signupstyle.css' %}">
+</head>
+	<body>
+
+	<h1>PROFILE HERE </h1>
+
+	<div class="register">
+		<label> First name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<td>{{firstname}}</td></br>
+			<label> Last  name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<td>{{lastname}}</td></br>
+			<label> DOB </label> &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			 
+
+			<td>{{birthday}}</td></br>
+			<label> Mobile </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+			<td>{{phonenumber}}</td></br>
+
+
+			<label> specialization </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<td>{{specialization}}</td></br>
+				
+			<label> Email ID</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<td>{{username}}</td><br><br>
+		<form action="{% url 'edit' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}	 
+  			<input type="submit" value="      e d i t      ">
+  			<button>
+        		<a href="{% url 'jvtconnect' %}">B A C K</a>
+   			</button>
+		</form>
+	</div>
+	</body>
+</html>
+
+
+
+

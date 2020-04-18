@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>profile edit</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/signupstyle.css' %}">
+</head>
+	<body>
+
+	<h1>CHANGE DETAILS </h1>
+
+	<div class="register">
+		<form action="{% url 'edit' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+		<label> First name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text" name="firstname" id="name" placeholder="{{firstname}}"><br><br>
+			<label> Last  name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text" name="lastname" id="name" placeholder="{{lastname}}"><br><br>
+			<label> DOB </label> &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			 
+
+			<input type="date" id="dob" name="birthday"><br><br>
+			<label> Gender     </label>
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="radio" id="male" name="gender" value="male">
+			<label for="male">Male</label>&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="radio" id="female" name="gender" value="female">
+			<label for="female">Female</label><br><br>
+			
+			<label> Mobile </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<select id="ph">
+					<option>+91</option>
+					<option>+92</option>
+					<option>+93</option>
+				</select>
+				<input type="number" name="phonenumber" id="num" placeholder="{{phonenumber}}"><br><br>
+			<label> Location </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<select id="loc">
+					<option>bangalore</option>
+					<option>mumbai</option>
+					<option>pune</option>
+				</select><br><br>
+
+			<label> specialization </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text" name="stream" id="branch" placeholder="{{specialization}}"><br><br>
+				
+			<label> Email ID</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text" name="email" id="name" placeholder="username"><br><br>
+			<label> Password </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="password" name="password" id="name" placeholder="{{password}}"><br><br>
+			<label> confirm password </label>&nbsp
+			<input type="password" name="confirmpassword" id="name" placeholder="password"><br><br>
+
+			<label> Add photo </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			 
+  			<input type="file" id="img" name="image" accept="image/*"><br><br>
+  			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "submit" href="/signin" id="sub">
+		</form>
+	</div>
+	</body>
+</html>
+

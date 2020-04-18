@@ -23,7 +23,7 @@ class users(models.Model):
     gender = models.CharField(max_length=10, null = True)
     phonenumber = models.CharField(max_length=20,null = True)
     specialization = models.CharField(max_length=20)
-    image = models.FileField(null = True)
+    image = models.ImageField(upload_to='profile_image',null = True, blank = True)
 
 
 class onetoone(models.Model):
