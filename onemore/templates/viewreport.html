@@ -1,0 +1,90 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table V02</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/viewreport.css' %}">
+
+</head>
+<body>
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table">
+
+						<div class="row header">
+							<div class="cell">
+								My Performance
+							</div>
+						</div>
+
+					<a href="{% url 'onetooneview' %}">
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								ONE TO ONE
+							</div>
+						</div>
+					</a>
+
+					<a href="{% url 'dailyview' %}">
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								DAILY PRESENTATION
+							</div>
+						</div>
+					</a>
+
+					<a href="{% url 'weeklyview' %}">
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								WEEEKLY PRESENTATION
+							</div>
+						</div>
+					</a>
+
+					<a href="{% url 'socialsview' %}">
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								SOICIALS
+							</div>
+						</div>
+					</a>
+
+					<a href="{% url 'visitorsview' %}">
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								VISITORS
+							</div>
+						</div>
+					</a>
+						
+					<a href="{% url 'referralsgivenview' %}">
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								REFERRALS GIVEN
+							</div>
+						</div>
+					</a>
+					
+					<a href="{% url 'referralstakenview' %}">	
+						<div class="row">
+							<div class="cell" data-title="Full Name">
+								REFERRALS TAKEN
+							</div>
+						</div>
+					</a>
+
+
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+
+</body>
+</html>

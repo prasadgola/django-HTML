@@ -23,13 +23,17 @@ class users(models.Model):
     gender = models.CharField(max_length=10, null = True)
     phonenumber = models.CharField(max_length=20,null = True)
     specialization = models.CharField(max_length=20)
+    address = models.CharField(max_length=200,null = True)
+    city = models.CharField(max_length=100,null = True)
+    course = models.CharField(max_length=100,null = True)
+    pincode = models.CharField(max_length=20,null = True)
     image = models.ImageField(upload_to='profile_image',null = True, blank = True)
 
 
 class onetoone(models.Model):
     onetooneid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment and primary key
     user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
-    partner = models.CharField(max_length=20)
+    # partner = models.CharField(max_length=20,null = True)
     onetopic = models.CharField(max_length=100)
     oneduration = models.PositiveIntegerField(null=True, blank=True)
     onedate = models.DateField(null = True)
@@ -60,7 +64,7 @@ class dailypresentation(models.Model):
 class socials(models.Model):
     socialsid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
     user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
-    socialsplace = models.CharField(max_length=100)
+    # socialsplace = models.CharField(max_length=100,null = True)
     socialstopic = models.CharField(max_length=100)
     socialsduration = models.PositiveIntegerField(null=True, blank=True)
     socialsdate = models.DateField(null = True)
@@ -70,7 +74,7 @@ class socials(models.Model):
 class visitors(models.Model):
     visitorsid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
     user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
-    visitorscount = models.PositiveIntegerField(null=True, blank=True)
+    # visitorscount = models.PositiveIntegerField(null=True, blank=True)
     visitorstopic = models.CharField(max_length=100)
     visitorsduration = models.PositiveIntegerField(null=True, blank=True)
     visitorsdate = models.DateField(null = True)
@@ -80,7 +84,7 @@ class visitors(models.Model):
 class referralsgiven(models.Model):
     referralsgivenid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
     user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
-    givencount = models.PositiveIntegerField(null=True, blank=True)
+    # givencount = models.PositiveIntegerField(null=True, blank=True)
     giventopic = models.CharField(max_length=100)
     givenduration = models.PositiveIntegerField(null=True, blank=True)
     givendate = models.DateField(null = True)
@@ -90,7 +94,7 @@ class referralsgiven(models.Model):
 class referralstaken(models.Model):
     referralstakenid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
     user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
-    takencount = models.PositiveIntegerField(null=True, blank=True)
+    # takencount = models.PositiveIntegerField(null=True, blank=True)
     takentopic = models.CharField(max_length=100)
     takenduration = models.PositiveIntegerField(null=True, blank=True)
     takendate = models.DateField(null = True)

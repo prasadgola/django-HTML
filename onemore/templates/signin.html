@@ -1,27 +1,33 @@
 {% load staticfiles %}
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/static.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+    <script src="{% static 'js/signin.js' %}"></script>
+    
+    {% if a %}
+      <script>
+          alert("Please Enter your fistname")
+      </script>
+    {% endif %}
   </head>
     <body>
     <div class="wrapper fadeInDown">
       <div id="formContent">
         <!-- Tabs Titles -->
         <h2 class="active"> Sign In </h2>
-        <a class="inactive underlineHover" href="/signup" >REGISTER </a>
+        <a class="inactive underlineHover" href="/signup" >SIGN UP</a>
     
         <!-- Icon -->
         <div class="fadeIn first">
-          <img src="{% static "css/2493738-medium190ap.jpg" %}" alt="My image">
+          <img src="{% static 'css/2493738-medium190ap.jpg' %}" alt="My image">
         </div>
     
   
         <!-- Login Form -->
-        <form action="{% url 'signin' %}" method="post">
+        <form action="{% url 'signin' %}" method="post" onsubmit="return validateform()">
           {% csrf_token %}
-          <input type="text" class="fadeIn second" name="userconnected" placeholder="username">
-          <input type="password" class="fadeIn third" name="passwordconnected" placeholder="password">
+          <input type="text" class="fadeIn second" id = "username" name="userconnected" placeholder="username">
+          <input type="password" class="fadeIn third" id = "password" name="passwordconnected" placeholder="password">
           <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
         <!-- Remind Passowrd -->
@@ -31,7 +37,7 @@
     
       </div>
     </div>
-    <body
+    </body>
 </html>
 
 

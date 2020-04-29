@@ -1,0 +1,63 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table V02</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/adminpage.css' %}">
+
+</head>
+<body>
+	
+	<!-- <div class="limiter"> -->
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table" id = "mytable">
+
+						<div class="row header">
+							<div class="cell">
+								NAME
+							</div>
+							<div class="cell">
+								USERNAME
+							</div>
+							<div class="cell">
+								SPECIALIZATION
+							</div>
+						</div>
+
+						{% for users in u %}
+							<!-- <a href="{% url 'weeklyview' %}"> -->
+								<div class="row">
+									<div class="cell">
+										{{ users.firstname }}
+									</div>
+									<div class="cell">
+										{{ users.username }}
+									</div>
+									<div class="cell">
+										{{ users.specialization }}
+									</div>
+								</div>
+							<!-- </a> -->
+						{% endfor %}
+
+
+
+
+
+					
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+
+</body>
+</html>
+

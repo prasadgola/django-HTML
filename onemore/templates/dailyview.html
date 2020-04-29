@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table V02</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/dailyview.css' %}">
+
+</head>
+<body>
+	
+	<!-- <div class="limiter"> -->
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table" id = "mytable">
+
+						<div class="row header">
+							<div class="cell">
+								TOPIC
+							</div>
+							<div class="cell">
+								TIME PERIOD
+							</div>
+							<div class="cell">
+								DATE
+							</div>
+						</div>
+
+					{% for daily in d %}
+
+						<div class="row">
+							<div class="cell">
+								{{ daily.dailytopic }}
+							</div>
+							<div class="cell">
+								{{ daily.dailyduration }}
+							</div>
+							<div class="cell">
+								{{ daily.dailydate }}
+							</div>
+						</div>
+					{% endfor %}
+
+
+
+
+
+					
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+
+</body>
+</html>
+

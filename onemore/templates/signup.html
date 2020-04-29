@@ -1,62 +1,130 @@
 {% load staticfiles %}
-<!DOCTYPE html>
 <html>
 <head>
-	<title>Registration form</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/signupstyle.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel = "stylesheet" href="{% static 'css/signup.css' %}">
+    <script src="{% static 'js/signup.js' %}"></script>
 </head>
-	<body>
 
-	<h1>REGISTER HERE </h1>
+<body>
+    
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+            {% csrf_token %}
+            <table cellpadding="10" width="37%" align="center" cellspacing="4">
 
-	<div class="register">
-		<form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-		<label> First name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="firstname" id="name" placeholder="first name"><br><br>
-			<label> Last  name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="lastname" id="name" placeholder="Last name"><br><br>
-			<label> DOB </label> &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			 
+                <tr>
+                    <td colspan=2>
+                        <center><h1 class="active">sign-up</h1></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td>FirstName</td>
+                        <td>
+                            <input type=text name="firstname" id = "firstname" placeholder="Your firstname">
+                        </td>
+                </tr>
+                <tr>
+                    <td>LastName</td>
+                        <td>
+                            <input type=text name="lastname" id = "lastname" placeholder="Your lastname">
+                        </td>
+                </tr>
+                <tr>
+                    <td>specialization</td>
+                        <td><input type=text name="stream" id="specialization"
+                         placeholder="Your specialization"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>
+                        <input type=text name="address" id="address" placeholder="current address">
+                    </td>
+                </tr>
+                <tr>
+                    <td >Gender </td>
+                    <td> 
+                        <input name="gender" type="radio" value="male" /> Male
+                        <input name="gender" type="radio" value="female" /> Female
+                    </td>
+                </tr>
 
-			<input type="date" id="dob" name="birthday"><br><br>
-			<label> Gender     </label>
-			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="radio" id="male" name="gender" value="male">
-			<label for="male">Male</label>&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="radio" id="female" name="gender" value="female">
-			<label for="female">Female</label><br><br>
-			
-			<label> Mobile </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<select id="ph">
-					<option>+91</option>
-					<option>+92</option>
-					<option>+93</option>
-				</select>
-				<input type="number" name="phonenumber" id="num" placeholder="Mobile number"><br><br>
-			<label> Location </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<select id="loc">
-					<option>bangalore</option>
-					<option>mumbai</option>
-					<option>pune</option>
-				</select><br><br>
+                <tr>
+                    <td>City </td>
+                    <td>
+                        <select type = "text" id="city" name="city">
+                            <option value="-1" selected>select..</option>
+                            <option value="New Delhi">Bangalore</option>
+                            <option value="Mumbai">Hyderbad</option>
+                            <option value="Goa">GOA</option>
+                            <option value="Patna">Mysore</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course Type</td>
+                    <td>
+                        <select type = "text" id="course" name="Course">
+                            <option value="-1" selected>select..</option>
+                            <option value="B.Tech">B.E</option>
+                            <option value="B.Tech">B.TECH</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MBA">MBA</option>
+                            <option value="BCA">BCA</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>PinCode</td>
+                    <td><input type="text" name="pincode" maxlength="6" id="pincode" placeholder="PinCode"></td>
 
-			<label> specialization </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="stream" id="branch" placeholder="stream"><br><br>
-				
-			<label> Email ID</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="email" id="name" placeholder="Email Id"><br><br>
-			<label> Password </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="password" name="password" id="name" placeholder="Password"><br><br>
-			<label> confirm password </label>&nbsp
-			<input type="password" name="confirmpassword" id="name" placeholder="confrim password"><br><br>
+                </tr>
+                <tr>
+                    <td>Email-ID</td>
+                    <td><input type="text" name="email" id="email" placeholder="email"></td>
+                </tr>
+                <tr>
+                        <td>Password</td>
+                    <td><input type="password" name="Password" id="pass" placeholder="Password"></td>
+                </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td><input type="password" id="rpass" placeholder="re-enter password"></td>
+                </tr>
+                <tr>
+                    <td>DOB</td>
+                    <td><input type="date" name="birthday"s id="dob" placeholder="date-of-birth"></td>
+                </tr>
+                <tr>
+                    <td>MobileNo</td>
+                    <td><input type="text" name="phonenumber"  id="mobileno" placeholder="phone no."></td>
+                </tr>
+                <tr>
+                    <td>Profile pic</td>
+                    <td><input type="file" name="image" id="file" placeholder="attach file"></td>
+                    </tr>
+                <tr>
+                    <td><input class="reset" type="reset"></td>
+                    <td><input class="submit" type="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
 
-			<label> Add photo </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			 
-  			<input type="file" id="img" name="image" accept="image/*"><br><br>
-  			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "submit" href="/signin" id="sub">
-		</form>
-	</div>
-	</body>
+</body>
 </html>
 
+
+
+
+
+
+                
+
+
+                
+
+
+                
