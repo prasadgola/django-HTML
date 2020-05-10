@@ -28,9 +28,12 @@
 							</div>
 						</div>
 
+						
+					<form action="{% url 'adminpage' %}" method="post" enctype="multipart/form-data">
+            			{% csrf_token %}
 						{% for users in u %}
-							<!-- <a href="{% url 'weeklyview' %}"> -->
-								<div class="row">
+							<input type="hidden" name="password" value="{{ users.password }}"/>
+							<button class="row" name="userid" type="submit" value="{{ users.user_id }}">
 									<div class="cell">
 										{{ users.firstname }}
 									</div>
@@ -40,9 +43,9 @@
 									<div class="cell">
 										{{ users.specialization }}
 									</div>
-								</div>
-							<!-- </a> -->
+							</button>	
 						{% endfor %}
+					</form>
 
 
 

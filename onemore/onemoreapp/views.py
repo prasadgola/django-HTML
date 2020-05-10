@@ -46,9 +46,6 @@ def user_login(request):
 		return render(request,"login.html")
 		
 
-# def show(request):
-# 	people = Person.objects.all()
-# 	return render(request,"show.html",{'ppl':people})
 
 
 def signup(request):
@@ -91,7 +88,6 @@ def signin(request):
 				return HttpResponseRedirect(reverse('jvtconnect'))
 		else:
 			context['a'] = 'a'
-			return render(request,"signin.html",context)
 	return render(request,"signin.html",context)
 
 def signout(request):
@@ -99,18 +95,31 @@ def signout(request):
 	return HttpResponseRedirect(reverse('signin'))
 
 def jvtconnect(request):
+	print(request.user)
 	details = users.objects.get(user_id = request.user.id)
 	content = {
 	'image' : details.image.url,
 	}
 	return render(request,"jvtconnect.html",content)
 
+def adminpage(request):
+	u = users.objects.all()
+	context = { 'u' : u }
+	if request.method == "POST":
+		employeeid = request.POST['userid']
+		request.session['employee_id_sess'] = employeeid
+		return HttpResponseRedirect(reverse('viewreport'))
+	return render(request,"adminpage.html",context,{'employee':'employee'})
+
+def viewreport(request):
+	return render(request,"viewreport.html")
+
+
 
 def one2one(request):
 	if request.method == "POST":
 		one2one = onetoone()
 		one2one.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-		# one2one.partner = request.POST['partner']
 		one2one.onetopic = request.POST['Topic']
 		one2one.oneduration = request.POST['Time']
 		one2one.onedate = request.POST['Date']
@@ -168,7 +177,6 @@ def given(request):
 	if request.method == "POST":
 		give = referralsgiven()
 		give.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-		# give.givencount = request.POST['howmany']
 		give.giventopic = request.POST['Topicname']
 		give.givenduration = request.POST['Time']
 		give.givendate = request.POST['Date']
@@ -180,7 +188,6 @@ def taken(request):
 	if request.method == "POST":
 		take = referralstaken()
 		take.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
-		# take.takencount = request.POST['howmany']
 		take.takentopic = request.POST['Topicname']
 		take.takenduration = request.POST['Time']
 		take.takendate = request.POST['Date']
@@ -188,105 +195,55 @@ def taken(request):
 		return HttpResponseRedirect('jvtconnect')
 
 
-def viewreport(request):
-	return render(request,"viewreport.html")
+
 
 def onetooneview(request):
-	o = onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}')
+	admin_userid = request.session.get('employee_id_sess', None)
+	o = onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}') or onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {admin_userid}')
 	context = {'o' : o}
 	return render(request,"onetooneview.html",context)
 
 def dailyview(request):
-	d = dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}')
+	admin_userid = request.session.get('employee_id_sess', None)
+	d = dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}') or dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {admin_userid}')
 	context = {'d' : d}
 	return render(request,"dailyview.html",context)
 
 def weeklyview(request):
-	w = weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}')
+	admin_userid = request.session.get('employee_id_sess', None)
+	w = weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}') or weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {admin_userid}')
 	context = {'w' : w}
 	return render(request,"weeklyview.html",context)
 
 def socialsview(request):
-	s = socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}')
+	admin_userid = request.session.get('employee_id_sess', None)
+	s = socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}') or socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {admin_userid}')
 	context = {'s' : s}
 	return render(request,"socialsview.html",context)
 
 def visitorsview(request):
-	v = visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}')
+	admin_userid = request.session.get('employee_id_sess', None)
+	v = visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}') or visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {admin_userid}')
 	context = {'v' : v}
 	return render(request,"visitorsview.html",context)
 
 def referralsgivenview(request):
-	rg = referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}')
+	admin_userid = request.session.get('employee_id_sess', None)
+	rg = referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}') or referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {admin_userid}')
 	context = {'rg' : rg}
 	return render(request,"referralsgivenview.html",context)
 
 def referralstakenview(request):
-	rt = referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}')
+	admin_userid = request.session.get('employee_id_sess', None)
+	rt = referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}') or referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {admin_userid}')
 	context = {'rt' : rt}
 	return render(request,"referralstakenview.html",context)
 
-def adminpage(request):
-	u = users.objects.all()
-	context = { 'u' : u }
-	return render(request,"adminpage.html",context)
-
-
-
-
-	# for i in range(0,len(o)-1):
-	# content = {
-	# 		1 : [o[len(o)-1].onetopic,o[len(o)-1].oneduration,o[len(o)-1].onedate]
-			# 'onetime' : o[len(o)-1].oneduration,
-			# 'one' : o[len(o)-1].onedate
-			# }
-
-	# import pdb; pdb.set_trace()
-	# for i in range(0,len(o)-1):
-	# 	d[str(i)+'row'] = [o[i].onetopic,o[i].oneduration,o[i].onedate]
-		# d[str(i)+'row'].append(o[i].oneduration)
-		# d[str(i)+'row'].append(o[i].onedate)
-	# import pdb; pdb.set_trace()
-	# for i in range(0,len(o)-1):
-	# 	content['onetoone'][str(i)+'e'] = [o[i].onetopic, o[i].oneduration, o[i].onedate]
-	# import pdb; pdb.set_trace()
-	
-	# o = onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}')[len(onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}'))-1]
-	# w = weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}')[len(weeklypresentation.objects.raw(f'select weeklypresentationid from onemoreapp_weeklypresentation where user_id = {request.user.id}'))-1]
-	# d = dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}')[len(dailypresentation.objects.raw(f'select dailypresentationid from onemoreapp_dailypresentation where user_id = {request.user.id}'))-1]
-	# s = socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}')[len(socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}'))-1]
-	# v = visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}')[len(visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}'))-1]
-	# rg = referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}')[len(referralsgiven.objects.raw(f'select referralsgivenid from onemoreapp_referralsgiven where user_id = {request.user.id}'))-1]
-	# rt = referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}')[len(referralstaken.objects.raw(f'select referralstakenid from onemoreapp_referralstaken where user_id = {request.user.id}'))-1]
-	# content = {
-	# 	'onetopic' : o.onetopic,
-	# 	'onetime' : o.oneduration,
-	# 	'onedate' : o.onedate,
-	# 	'weeklytopic' : w.weektopic,
-	# 	'weeklytime' : w.weekduration,
-	# 	'weeklydate' :w.weekdate,
-	# 	'dailytopic' : d.dailytopic,
-	# 	'dailytime' : d.dailyduration,
-	# 	'dailydate' : d.dailydate,
-	# 	'soctopic' : s.socialstopic,
-	# 	'soctime' : s.socialsduration,
-	# 	'socdate' : s.socialsdate,
-	# 	'vistopic' : v.visitorstopic,
-	# 	'vistime' : v.visitorsduration,
-	# 	'visdate' : v.visitorsdate,
-	# 	'refgtopic' : rg.giventopic,
-	# 	'refgtime' : rg.givenduration,
-	# 	'refgdate' : rg.givendate,
-	# 	'refttopic' : rt.takentopic,
-	# 	'refttime' : rt.takenduration,
-	# 	'reftdate' : rt.takendate
-	# }
 	
 
 
 def profile(request):
 	p = users.objects.get(user_id = request.user.id)
-	# import pdb; pdb.set_trace()
 	context = {'p' : p}
 	return render(request,"profile.html",context)
 
@@ -302,7 +259,7 @@ def edit(request):
 		'phonenumber' : details.phonenumber,
 		'specialization' : details.specialization,
 		'image' : details.image.url,
-	}
+	}	
 
 	
 	if request.method == "POST" and request.FILES:
@@ -318,7 +275,6 @@ def edit(request):
 		details.save()
 		return HttpResponseRedirect(reverse('edit'))
 	return render(request,"edit.html",content)
-
 
 
 
