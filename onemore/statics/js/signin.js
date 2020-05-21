@@ -1,3 +1,5 @@
+
+
 function validateform()
 {  
 // var name=document.myform.email.value;  
@@ -13,3 +15,4 @@ if (username.value==null || username.value=="")
   return false;  
 }  
 } 
+

@@ -33,9 +33,11 @@ class users(models.Model):
 class onetoone(models.Model):
     onetooneid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment and primary key
     user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    onemet = models.CharField(max_length=20,null = True)
     # partner = models.CharField(max_length=20,null = True)
     onetopic = models.CharField(max_length=100)
-    oneduration = models.PositiveIntegerField(null=True, blank=True)
+    # oneduration = models.PositiveIntegerField(null=True, blank=True)
+    onelocation = models.CharField(max_length=20,null = True)
     onedate = models.DateField(null = True)
 
 

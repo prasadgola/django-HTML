@@ -95,10 +95,11 @@ def signout(request):
 	return HttpResponseRedirect(reverse('signin'))
 
 def jvtconnect(request):
-	print(request.user)
 	details = users.objects.get(user_id = request.user.id)
+	employee = users.objects.all()
 	content = {
-	'image' : details.image.url,
+	'details' : details,
+	'employee' : employee
 	}
 	return render(request,"jvtconnect.html",content)
 
@@ -109,7 +110,7 @@ def adminpage(request):
 		employeeid = request.POST['userid']
 		request.session['employee_id_sess'] = employeeid
 		return HttpResponseRedirect(reverse('viewreport'))
-	return render(request,"adminpage.html",context,{'employee':'employee'})
+	return render(request,"adminpage.html",context)
 
 def viewreport(request):
 	return render(request,"viewreport.html")
@@ -120,8 +121,10 @@ def one2one(request):
 	if request.method == "POST":
 		one2one = onetoone()
 		one2one.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		one2one.onemet = request.POST['Met']
+		one2one.onelocation = request.POST['Loc']
 		one2one.onetopic = request.POST['Topic']
-		one2one.oneduration = request.POST['Time']
+		# one2one.oneduration = request.POST['Time']
 		one2one.onedate = request.POST['Date']
 		one2one.save()
 		return HttpResponseRedirect('jvtconnect')

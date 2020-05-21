@@ -28,7 +28,7 @@
   <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
   <ul class="nav navbar-nav ml-auto">
         <li class="nav-item active">
-              <a href="{% url 'profile' %} " class="navbar-brand">profile&nbsp;&nbsp;</a>
+              <a href="{% url 'profile' %} " class="navbar-brand"><img src="{{ details.image.url }}" width="39" height="39">&nbsp;profile&nbsp;&nbsp;</a>
         </li>       
         <li class="nav-item active">
               <a href="{% url 'viewreport' %} " class="navbar-brand">View report</a>
@@ -57,7 +57,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">  
-            <img src="one-one.jpg" height="50px" width="50px">
+            <img src="{%static 'css/one-one.jpg' %}" height="50px" width="50px">
             <h4 class="modal-title" >&nbsp;&nbsp;&nbsp;One To One</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
           </div>
@@ -66,23 +66,32 @@
             <form action="{% url 'onetoone' %}" method = "post" onsubmit="return validate()">
               {% csrf_token %}
               <div class="form-group">
-                <input type="text" class="form-control"  placeholder="Topic Name" name = "Topic">
+                <select type = "text" class = "form-control"  name="Met">
+                    <option value="-1" selected>Select Met With</option>
+                    {% for emp in employee %}
+                      <option value="{{ emp.firstname }}">{{ emp.firstname }}</option>
+                    {% endfor %}
+                </select>
               </div>
-             <!--  <div class="form-group">
-                <input type="text" class="form-control"  placeholder="Discussed with" name = "partner">
-              </div> -->
+              <div class="form-group">
+                <input type="text" class="form-control"  placeholder="Location" name = "Loc">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control"  placeholder="Topic Name of Conversation" name = "Topic">
+              </div>
               <div class="form-group">
                 <input type="date"  class="form-control" name = "Date">
               </div>
-              <div class="form-group">
+<!--               <div class="form-group">
                 <label  class="col-form-label col-sm-12 ">Duration:</label>
                 <input type="number"  class="form-control" name = "Time">
-              </div>
+              </div> -->
               <div class="modal-footer">
                 <button type="submit" class="btn-success btn-block">Save</button>
               </div>  
             </form>
           
+        
           </div>
         </div>
       </div>
@@ -98,7 +107,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <img src="presentation.jpg" height="50px" width="50px">
+          <img src="{%static 'css/presentation.jpg' %}" height="50px" width="50px">
           <h4 class="modal-title" >&nbsp;&nbsp;&nbsp;Daily Presentation</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
         </div>
@@ -138,7 +147,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <img src="presentation.jpg" height="50px" width="50px">
+            <img src="{%static 'css/presentation.jpg' %}" height="50px" width="50px">
             <h4 class="modal-title">&nbsp;&nbsp;&nbsp;Weekly Presentation</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
           </div>
@@ -179,7 +188,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <img src="gp.jpg" height="50px" width="50px">
+            <img src="{%static 'css/groupq.jpg' %}" height="50px" width="50px">
             <h4 class="modal-title">&nbsp;&nbsp;&nbsp;Social's</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
           </div>
@@ -229,7 +238,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <img src="visitors.jpg" height="50px" width="50px">
+          <img src="{%static 'css/visitors.jpg' %}" height="50px" width="50px">
           <h4 class="modal-title">&nbsp;&nbsp;&nbsp;Visitors</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
         </div>
