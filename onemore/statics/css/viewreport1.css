@@ -1,0 +1,301 @@
+
+.header {
+  background: linear-gradient(to right,rgb(31, 248, 31), blue);
+   padding: 2px; 
+   height:50px;
+   font-family:'Geostar';
+  font-size: 18px;
+  color: #ddd;
+  text-align: center;
+}
+img{
+
+    width: 120px;
+    height: 120px;
+    
+    border-radius: 50%;
+    }
+    .img2{
+      width: 30px;
+      height: 30px;
+      border-radius: 30%;
+      
+    }
+    
+    .rotate {
+        animation: rotation 10s infinite linear;
+        }
+        
+        @keyframes rotation {
+        from {
+        transform: rotate(0deg);
+        }
+        to {
+        transform: rotate(359deg);
+        }
+        }
+        .rotate:hover {
+        font-size: 15rem;
+        cursor: pointer;
+        animation-play-state: paused;
+        }
+ @media screen and (min-width: 700px) {
+        .modal-dialog {
+          width: 900px; /* New width for default modal */
+        }
+        .modal-sm {
+          width: 350%; /* New width for small modal */
+        }
+    }
+    @media screen and (min-width: 992px) {
+        .modal-lg {
+          width: 200%; /* New width for large modal */
+        }
+    }
+
+
+
+
+.header1
+{
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #0e146e;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+     height: 40px;
+}
+.header1:hover{
+    background-color: green;
+}
+
+
+.close
+{
+    color: red;
+    margin-top: 4%;
+    size: 10px;
+}
+.close:hover
+{
+    color: darkred;
+}
+.form-group
+{
+     font-size: 10px;
+     text-align: right;
+}
+.modal-content
+{
+    height: 30%px;
+    text-align: center;
+}
+.col-form-label
+{
+    text-align: left !important;
+    font-size: 20px;
+}
+
+/*heder*/
+.one
+{
+  border: none;
+  position: absolute;
+  border-radius: 50%;
+  margin-left: -20%;
+  margin-top: -5px;
+  letter-spacing: 1px;
+  font-size: 15px;
+}
+.daily
+{
+  border: none;
+  position: absolute;
+  border-radius: 50%;
+  margin-left: 30%;
+  margin-top: 245px;
+  
+}
+
+
+.weekly
+{
+ 
+ 
+  position: absolute;
+  border: none;
+  border-radius: 50%;
+  margin-left: 30%;
+  margin-top: 370px;
+}
+
+
+.social
+{
+
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  margin-left: 30%;
+  margin-top: 495px;
+
+}
+
+
+
+.refer
+{
+ 
+  border-radius: 50%;
+ 
+  border: none;
+  position: absolute;
+  margin-left: 35.5%;
+  margin-top: 590px;
+}   
+.visit
+{
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  margin-left: 52%;
+  margin-top: 685px;
+}  
+
+.jobrecom
+{
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  margin-left: 58%;
+  margin-top: 595px;
+} 
+ .thank
+{
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  margin-left: 63%;
+  margin-top: 495px;
+}  
+.contact
+{
+ 
+  border-radius: 50%;
+ 
+  border: none;
+  position: absolute;
+  margin-left: 63%;
+  margin-top: 370px;
+}   
+
+.training
+{
+ 
+  border-radius: 50%;
+ 
+  border: none;
+  position: absolute;
+  margin-left: 63%;
+  margin-top: 245px;
+}   
+.invite
+{
+ 
+  border-radius: 50%;
+ 
+  border: none;
+  position: absolute;
+  margin-left: 42%;
+  margin-top: 675px;
+}   
+.mock
+{
+ 
+  border-radius: 50%;
+ font-family: 'Akronim';
+  border: none;
+  position: absolute;
+  margin-left: 63%;
+  margin-top: 120px;
+}   
+.culture
+{
+  margin-top: 790px;
+   position:absolute;
+   text-align: center;
+   margin-left: 47%;
+}
+
+
+
+
+
+
+@keyframes animate {
+	from {
+		background-position: 0;
+	}
+
+	to {
+		background-position: 0 450px;
+	}
+}
+.required:after {
+    content:"*";color:red;
+  }
+ 
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: 1px;
+    color: rgb(35, 16, 87);
+  }
+  th {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 0.8px;
+    color: deeppink;
+  }
+  tr:hover {background-color:#f5ecec;}
+   h2{
+    text-align: center;
+    font-family: lucida calligraphy;
+    color: white;
+    font-size: 36px;
+  } 
+ 
+
+  .prog
+{
+	margin-top: 7%;
+}
+
+hr { 
+    position: relative; 
+    top: 10px; 
+    border: none; 
+    height: 1px; 
+    background: maroon; 
+    margin-bottom: 60px; 
+}
+label
+{
+    color: maroon;
+}

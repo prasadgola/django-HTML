@@ -1,5 +1,5 @@
 body{
-    background-color: #27606d;
+    background: linear-gradient(to right,rgb(31, 248, 31), blue);
 }
 .emp-profile{
     padding: 3%;

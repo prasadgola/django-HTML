@@ -1,0 +1,155 @@
+{% load staticfiles %}
+<html>
+<body>
+<div class="background">
+    <div class="container">
+        <center><img src="{% static 'css/help.jpg' %}" height="90px" width="100%"></center><br><br>
+      <div class="screen">
+        <div class="screen-body">
+          <div class="screen-body-item left">
+            <div class="app-title">
+                <span>CONTACT</span>
+                <span>US</span>
+              </div>    
+            <div class="app-contact">CONTACT INFO :+91 99003 67097</div>
+          </div>
+          <form action="{% url 'home' %}" method = "post">
+            {% csrf_token %}
+            <div class="screen-body-item">
+              <div class="app-form">
+                <div class="app-form-group">
+                  <input class="app-form-control" placeholder="NAME" placeholder="">
+                </div>
+                <div class="app-form-group">
+                  <input class="app-form-control" placeholder="EMAIL">
+                </div>
+                <div class="app-form-group">
+                  <input class="app-form-control" placeholder="CONTACT NO">
+                </div>
+                <div class="app-form-group message">
+                  <textarea class="app-form-control" placeholder="MESSAGE"></textarea>
+                </div>
+                <div class="btns">
+                  <form action="home1.html" method="post">
+                  <button class="btn">CANCEL</button></form>
+                  <button type = "submit" class="btn" onclick="myFunction()">SEND</button>
+                  <script>
+                      function myFunction() {
+                      alert("THANK YOU! We will get back to you soon!");
+  }
+                  </script>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<style>
+ 
+  
+
+  body {
+  background: linear-gradient(to right, #ea1d6f 0%, #eb466b 100%);
+  font-size: 12px;
+}
+
+body, button, input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+  
+  .background {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .container {
+    flex: 0 1 700px;
+    margin: auto;
+    padding: 10px;
+  }
+  
+  .screen {
+    position: relative;
+    background: #3e3e3e;
+    border-radius: 15px;
+  }
+  
+   
+  .screen-body {
+    display: flex;
+  }
+  
+  .screen-body-item {
+    flex: 1;
+    padding: 50px;
+  }
+  .app-title {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  font-size: 26px;
+}
+
+  .app-contact {
+    margin-top: 80%;
+    font-size: 12px;
+    color:white;
+  }
+  
+  .app-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .app-form-group.message {
+    margin-top: 40px;
+  }
+  
+  .btns {
+    margin-bottom: 0;
+    text-align:center;
+    
+  }
+  
+  .app-form-control {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #666;
+    color: #ddd;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-color .2s;
+  }
+  
+  .app-form-control::placeholder {
+    color: #666;
+  }
+  
+  .app-form-control:focus {
+    border-bottom-color: #ddd;
+  }
+  
+  .btn {
+    background: none;
+    border: none;
+    color: #ea1d6f;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .btn:hover {
+    color: #b9134f;
+  }
+    
+</style>
+</body>
+</html>

@@ -1,90 +1,576 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Table V02</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="stylesheet" type="text/css" href="{% static 'css/viewreport.css' %}">
-
-</head>
+<html >
+        <head>
+           <meta charset="UTF-8">
+           <meta name="viewport" content="width=device-width, initial-scale=1">
+          <title>view</title>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+           <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+           <link rel="stylesheet" type="text/css" href="{% static 'css/viewreport1.css' %}">
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+           <script src="js/connect.js"></script>  
+        </head>
+   
 <body>
-		<div class="container-table100">
-			<div class="wrap-table100">
-					<div class="table">
+    
+    <div class="header">
+      <h2>JvT Activities report</h2>
+      
+      </div><br>
+          
+          <table>
+            <thead>
+               
+              <tr>
+                <th>JVT Process</th>
+                <th>Till date</th>
+                <th>Missed</th>
+              </tr>
+            </thead>
+                
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#one"  data-backdrop="static" data-keyboard="false">one to one</a>
+                        <div class="modal fade " id="one"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >One To One complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Met with</th>
+                                    <th scope="col">Invited By</th>
+                                    <th scope="col">Topic name</th>
+                                    <th scope="col">Ratings</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for one in o %}
+                                  <tr>
+                                    <td scope="row">{{one.onedate}}</td>
+                                    <td>{{one.onemet}}</td>
+                                    <td>{{one.oneinvited}}</td>
+                                    <td>{{one.onetopic}}</td>
+                                    <td>{{one.oneratings}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
+                                      
+                              
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#weekly"  data-backdrop="static" data-keyboard="false">Daily Presentation</a>
+                        <div class="modal fade " id="weekly"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Daily presentation complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Topic name</th>
+                                    <th scope="col">Best presenter</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for daily in d %}
+                                  <tr>
+                                    <td scope="row">{{daily.dailydate}}</td>
+                                    <td>{{daily.dailyduration}}</td>
+                                    <td>{{daily.dailytopic}}</td>
+                                    <td>{{daily.dailybestby}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
 
-						<div class="row header">
-							<div class="cell">
-								My Performance
-							</div>
-						</div>
+                          
+                             
+              
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#daily"  data-backdrop="static" data-keyboard="false">Weekly Presentation</a>
+                        <div class="modal fade " id="daily"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Weekly presentation complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Topic name</th>
+                                    <th scope="col">Best presenter</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for week in w %}
+                                  <tr>
+                                    <td scope="row">{{week.weekdate}}</td>
+                                    <td>{{week.weekduration}}</td>
+                                    <td>{{week.weektopic}}</td>
+                                    <td>{{week.weekbestby}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
 
-					<a href="{% url 'onetooneview' %}">
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								ONE TO ONE
-							</div>
-						</div>
-					</a>
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#team"  data-backdrop="static" data-keyboard="false">Team Outing</a>
+                        <div class="modal fade " id="team"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Team Outing complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Place</th>
+                                    <th scope="col">Topic</th>
+                                    <th scope="col">uploaded pick</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for socials in s %}
+                                  <tr>
+                                    <td scope="row">{{socials.socialsdate}}</td>
+                                    <td>{{socials.socialsplace}}</td>
+                                    <td>{{socials.socialstopic}}</td>
+                                    <td>{{socials.socialspic}}</td>
+                                  </tr>
+                                  {% endfor %}>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
 
-					<a href="{% url 'dailyview' %}">
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								DAILY PRESENTATION
-							</div>
-						</div>
-					</a>
-
-					<a href="{% url 'weeklyview' %}">
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								WEEEKLY PRESENTATION
-							</div>
-						</div>
-					</a>
-
-					<a href="{% url 'socialsview' %}">
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								SOICIALS
-							</div>
-						</div>
-					</a>
-
-					<a href="{% url 'visitorsview' %}">
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								VISITORS
-							</div>
-						</div>
-					</a>
-						
-					<a href="{% url 'referralsgivenview' %}">
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								REFERRALS GIVEN
-							</div>
-						</div>
-					</a>
-					
-					<a href="{% url 'referralstakenview' %}">	
-						<div class="row">
-							<div class="cell" data-title="Full Name">
-								REFERRALS TAKEN
-							</div>
-						</div>
-					</a>
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#given"  data-backdrop="static" data-keyboard="false">Given Referral</a>
+                        <div class="modal fade " id="given"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Given Referral complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Referral</th>
+                                    <th scope="col">Referral Type</th>
+                                    <th scope="col">status</th>
+                                    <th scope="col">Mobile No</th>
+                                    <th scope="col">Ratings</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for given in g %}
+                                  <tr>
+                                    <td scope="row">{{given.givenby}}</td>
+                                    <td>{{given.giventype}}</td>
+                                    <td></td>
+                                    <td>{{given.givenphonenumber}}</td>
+                                    <td></td>
+                                  </tr>
+                                  {% endfor %}>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
 
 
-					</div>
-			</div>
-		</div>
-	</div>
+
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#invite"  data-backdrop="static" data-keyboard="false">Invited Visiors</a>
+                        <div class="modal fade " id="invite"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Invite Visitors complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Firstname</th>
+                                    <th scope="col">Visitor company</th>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Email</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for invite in i %}
+                                  <tr>
+                                    <td scope="row">{{invite.title}}</td>
+                                    <td>{{invite.firstname}}</td>
+                                    <td>{{invite.vcompanyname}}</td>
+                                    <td>{{invite.companyname}}</td>
+                                    <td>{{invite.email}}</td>
+                                  </tr>
+                                  {% endfor %}>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
 
 
-	
+
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#visit"  data-backdrop="static" data-keyboard="false">Visitors</a>
+                        <div class="modal fade " id="visit"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Visitors complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Number of visitors</th>
+                                    <th scope="col">topic</th>
+                                    <th scope="col"> uploaded pick</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                    {% for vis in v %}
+                                    <tr>
+                                      <td scope="row">{{vis.visitorsdate}}</td>
+                                      <td>{{vis.visitorsnumbers}}</td>
+                                      <td>{{vis.visitorstopic}}</td>
+                                      <td>{{vis.visitorspic}}</td>
+                                    </tr>
+                                    {% endfor %}>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#job"  data-backdrop="static" data-keyboard="false">Job Recommendation</a>
+                        <div class="modal fade " id="job"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Job Recommendation complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Experience</th>
+                                    <th scope="col">CTC</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Company name</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for job in j %}
+                                  <tr>
+                                    <td scope="row">{{job.recname}}</td>
+                                    <td>{{job.recexp}}</td>
+                                    <td>{{job.recctc}}</td>
+                                    <td>{{job.recdate}}</td>
+                                    <td>{{job.reccomname}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
 
 
-</body>
-</html>
+                         
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#contact"  data-backdrop="static" data-keyboard="false">Contact Sphere</a>
+                        <div class="modal fade " id="contact"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Contact Sphere complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone number</th>
+                                    <th scope="col">Email Address</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for sphere in s %}
+                                  <tr>
+                                    <td scope="row">{{sphere.spherename}}</td>
+                                    <td>{{sphere.spherenumber}}</td>
+                                    <td>{{sphere.spheremail}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
+
+
+
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#training"  data-backdrop="static" data-keyboard="false">Training</a>
+                        <div class="modal fade " id="training"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Training complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">End Date</th>
+                                    <th scope="col">subject</th>
+                                    <th scope="col">Ratings</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for train in t %}
+                                  <tr>
+                                    <td scope="row">{{train.startdate}}</td>
+                                    <td>{{train.enddate}}</td>
+                                    <td>{{train.subject}}</td>
+                                    <td>{{train.rating}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
+
+                                   
+
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#mock"  data-backdrop="static" data-keyboard="false">Mock Interview</a>
+                        <div class="modal fade " id="mock"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >Mock interview complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Met with</th>
+                                    <th scope="col">Invited By</th>
+                                    <th scope="col">Ratings</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for mock in m %}
+                                  <tr>
+                                    <td scope="row">{{mock.Date}}</td>
+                                    <td>{{mock.metwith}}</td>
+                                    <td>{{mock.inviteby}}</td>
+                                    <td>{{mock.rating}}</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <td></td>
+                        <td></td>
+                    </div>
+                  </td>
+                </tr>
+
+
+                            
+                <tr>
+                  <td style="color: blue;">
+                    <div>
+                      <a  type="button" data-toggle="modal" data-target="#thank"  data-backdrop="static" data-keyboard="false">JVT Thank You</a>
+                        <div class="modal fade " id="thank"  role="dialog" >
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header header1" >  
+                                <h5 class="modal-title" style="color: white;" >JVT thank you complete Report </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">&times; </button>
+                              </div>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Thankyou To</th>
+                                    <th scope="col">Referral Amount</th>
+                                    <th scope="col">Business Type</th>
+                                    <th scope="col">Referral Type</th>
+                                  </tr>
+                                </thead>
+                              <tbody>
+                                  {% for you in y %}
+                                  <tr>
+                                    <td scope="row">{{you.youto}}</td>
+                                    <td>{{you.youamount}}</td>
+                                    <td>{{you.youbtype}}</td>
+                                    <td>{{you.yourtype}}</td>
+                                  </tr>
+                                  {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <td></td>
+                      <td></td>
+                  </div>
+                </td>
+              </tr>
+          
+
+
+          </table>
+        </div>
+        <br>
+      <div >
+        <center> <a class="btn btn-danger" href="{% url 'home' %}" style="color: white;">Back To Home</a></center>
+      </div>
+    </div>
+  </body>
+  </html>
+                             
+
+
+                          
+                       
+                             
+                            
+
+
+
+ 
+
+
+                          
+                       
+
+                              
+
+
+
+
+
+                          
+                       
+
+                                 
+                              
+
+
