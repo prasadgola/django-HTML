@@ -6,47 +6,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
-def ppl(request):
-	if request.method == "POST":
-		if request.POST['name'] and request.POST['image']:
-			post = Person()
-			post.first_nam = request.POST['name']
-			post.last_nam = request.POST['image']
-			print(post.first_nam)
-			post.save()
-			user = authenticate(request, username=post.first_nam,password=post.last_nam)
-			if user:
-				login(request, user)
-				return HttpResponseRedirect(reverse('user_success'))
-			else:
-				return render(request,"index.html")
-	else:
-		return render(request,"index.html")
-
-
-
-
-
-def user_login(request):
-	if request.method == "POST":
-		basava = Gola()
-		basava.first_nam= request.POST['username']
-		basava.last_nam = request.POST['password']
-		basava.save()
-		print(basava.first_nam)
-		print(basava.last_nam)
-		user = authenticate(request, username=basava.first_nam,password=basava.last_nam)
-		if user:
-			login(request, user)
-			return HttpResponseRedirect(reverse('user_success'))
-		else:
-			return render(request,"login.html")
-	else:
-		return render(request,"login.html")
-		
-
-
-
 def signup(request):
 	if request.method == "POST" and request.FILES:
 		register = users()
@@ -89,9 +48,13 @@ def signin(request):
 			context['a'] = 'a'
 	return render(request,"signin.html",context)
 
+
+
 def signout(request):
 	logout(request)
 	return HttpResponseRedirect(reverse('signin'))
+
+
 
 def home(request):
 	# details = users.objects.get(user_id = request.user.id)
@@ -102,6 +65,8 @@ def home(request):
 	}
 	return render(request,"home.html",context)
 
+
+
 def adminpage(request):
 	u = users.objects.all()
 	context = { 'u' : u }
@@ -110,6 +75,8 @@ def adminpage(request):
 		request.session['employee_id_sess'] = employeeid
 		return HttpResponseRedirect(reverse('viewreport'))
 	return render(request,"adminpage.html",context)
+
+
 
 def viewreport(request):
 	o = onetoone.objects.raw(f'select onetooneid from onemoreapp_onetoone where user_id = {request.user.id}')
@@ -391,6 +358,7 @@ def forgotpassword(request):
 		email.send()
 		return HttpResponseRedirect(reverse('signin'))
 	return render(request,"forgotpassword.html")
+
 
 def needhelp(request):
 	return render(request,"need.html")

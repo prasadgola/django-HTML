@@ -10,8 +10,6 @@ admin.site.index_title = 'jvt connect adminstration'
 
 
 urlpatterns = [
-    path('login',views.user_login, name = 'nobulshit'),
-    path('ppl',views.ppl, name = 'ppl'),
     # path('show',views.show, name = 'show'),
     path('signin',views.signin, name = 'signin'),
     path('admin/', admin.site.urls),
@@ -25,7 +23,7 @@ urlpatterns = [
     path('socials', views.social, name = 'socials'),
     path('visitors', views.visitor, name = 'visitors'),
     path('referralsgiven', views.given, name = 'referralsgiven'),
-    path('referralstaken', views.taken, name = 'referralstaken'),
+    # path('referralstaken', views.taken, name = 'referralstaken'),
     path('thankyou', views.thankyou, name = 'thankyou'),
     path('jobrecommendation', views.jobrecommendation, name = 'jobrecommendation'),
     path('contactsphere', views.contactsphere, name = 'contactsphere'),
