@@ -28,7 +28,7 @@
     <span class="navbar-toggler-icon" ></span> </button>
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item ">
-          <a class=""  href="jvtconnect.html" style="color: white;">Home <span class="sr-only">(current)</span></a>
+          <a class=""  href="{% url 'home' %}" style="color: white;">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class=""   href="{% url 'viewreport' %}" style="color: white;">view-report</a>
@@ -84,7 +84,7 @@
                     <select type = "text" name = "met" class="form-control " id="name" name="name" placeholder="Discussed with" required>
                       <option value = "">select</option>
                       {% for user in user %}
-                        <option value="{{ user.firstname }}">{{ user.firstname }}</option>
+                        <option value="{{ user.firstname }}">{{ user.username }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -95,7 +95,7 @@
                     <select type = "text" name = "invited" class="form-control" id="name" placeholder="Invited By" required>
                       <option value = "">select</option>
                       {% for user in user %}
-                        <option value="{{ user.firstname }}">{{ user.firstname }}</option>
+                        <option value="{{ user.username }}">{{ user.username }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -116,7 +116,7 @@
                 <div class="form-group row justify-content-md-center">
                   <label  class="col-sm-2 col-form-label required">Topic Name</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "topic" class="form-control " id="topic_name" placeholder="Discussed about" required>
+                    <input type="text" name = "topic" pattern="^[ A-z0-9]{1,}$" class="form-control " id="topic_name" placeholder="Discussed about" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -149,13 +149,13 @@
                 <div class="form-group row justify-content-md-center">
                   <label class="col-sm-2 col-form-label required">Topic Name</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "topic" class="form-control " id="topic_name" placeholder="Presented about" required>
+                    <input type="text" name = "topic" pattern="^[ A-z0-9]{1,}$" class="form-control " id="topic_name" placeholder="Presented about" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
                 <label class="col-sm-2 col-form-label required">Duration</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" id="name" name="time" required>
+                    <input type="text" class="form-control" pattern="^[0-9]{0,2}$" id="name" name="time" placeholder="In min" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -170,7 +170,7 @@
                     <select  class="form-control" name ="bestby" id="name" placeholder="Invited By" required>
                       <option value = "">today's Best Presenter</option>
                       {% for user in user %}
-                        <option value="{{ user.firstname }}">{{ user.firstname }}</option>
+                        <option value="{{ user.username }}">{{ user.username }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -199,13 +199,13 @@
                 <div class="form-group row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label required">Topic Name</label>
                   <div class="col-sm-6">
-                    <input type="text"  class="form-control " name = "topic" id="topic_name" placeholder="Presented about" required>
+                    <input type="text"  class="form-control " pattern="^[ A-z0-9]{1,}$" name = "topic" id="topic_name" placeholder="Presented about" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
                   <label for="inputPassword" class="col-sm-2 col-form-label required">Duration</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" id="name" name="time"  required>
+                    <input type="text" class="form-control" pattern="^[0-9]{0,2}$" id="name" name="time"  required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -220,7 +220,7 @@
                     <select  class="form-control" name ="bestby" id="name" placeholder="Invited By" required>
                       <option value = "">today's Best Presenter</option>
                       {% for user in user %}
-                        <option value="{{ user.firstname }}">{{ user.firstname }}</option>
+                        <option value="{{ user.username }}">{{ user.username }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -255,13 +255,13 @@
                 <div class="form-group  row justify-content-md-center">
                   <label for="inputPassword" class="col-sm-2 col-form-label required">Place </label>
                   <div class="col-sm-6">
-                    <input type="text" name = "place" class="form-control" id="name" placeholder="Place where you met" required>
+                    <input type="text" pattern="^[ A-z0-9]{1,}$" name = "place" class="form-control" id="name" placeholder="Place where you met" required>
                   </div>
                 </div>
                 <div class="form-group  row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label required">Topic </label>
                   <div class="col-sm-6">
-                    <input type="text" name = "topic" class="form-control " id="topic_name" placeholder="Discussed about" required>
+                    <input type="text" pattern="^[ A-z0-9]{1,}$" name = "topic" class="form-control " id="topic_name" placeholder="Discussed about" required>
                   </div>
                 </div>
                 <div class="form-group  row justify-content-md-center">
@@ -306,7 +306,7 @@
                 <div class="form-group row justify-content-md-center">
                   <label for="topic" class="col-sm-2 col-form-label required">Topic </label>
                   <div class="col-sm-6">
-                    <input type="text" name = "topic" class="form-control " id="topic_name" placeholder="Presentation about" required>
+                    <input type="text" name = "topic" pattern="^[ A-z0-9]{1,}$" class="form-control " id="topic_name" placeholder="Presentation about" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -339,7 +339,7 @@
                 <div class="form-group  row justify-content-md-center">
                   <label for="text" class="col-sm-2 col-form-label required">Referral </label>
                   <div class="col-sm-6">
-                    <input type="text" name = "refgivenby" class="form-control" id="name" placeholder="Referral Name" required>
+                    <input type="text" pattern="^[ A-z]{1,}$" name = "refgivenby" class="form-control" id="name" placeholder="Referral Name" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -363,13 +363,13 @@
                 <div class="form-group  row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label">Address </label>
                   <div class="col-sm-6">
-                    <input type="text" name = "address" class="form-control " id="address" placeholder="Enter address" required>
+                    <input type="text" pattern="^[ A-z0-9]{,}{1,}$" name = "address" class="form-control " id="address" placeholder="Enter address" required>
                   </div>
                 </div>
                 <div class="form-group  row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label required">Mobile No </label>
                   <div class="col-sm-6">
-                    <input type="text" name = "phonenumber" class="form-control " id="number"  maxlength="10" placeholder="Enter phone number" required>
+                    <input type="text" pattern="[6-9]{1}[0-9]{9}" name = "phonenumber" class="form-control " id="number"  maxlength="10" placeholder="Enter phone number" required>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -399,7 +399,7 @@
                     <select  class="form-control " id="name" name="name" placeholder="Select thank you to" required>
                       <option value = "">select</option>
                       {% for user in user %}
-                        <option value="{{ user.firstname }}">{{ user.firstname }}</option>
+                        <option value="{{ user.username }}">{{ user.username }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -407,7 +407,7 @@
                 <div class="form-group row justify-content-md-center">
                   <label  class="col-sm-3 col-form-label required">Referral Amount</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "amount" class="form-control " id="topic_name" placeholder="Enter amount" required>
+                    <input type="text"  pattern="^[0-9]{1,}$" name = "amount" class="form-control " id="topic_name" placeholder="Enter amount" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -458,19 +458,19 @@
                 <div class="form-group row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label required">Your Name</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "name" class="form-control " id="topic_name" placeholder="Enter you full name">
+                    <input type="text"  pattern="^[ A-z]{1,}$" name = "name" class="form-control " id="topic_name" placeholder="Enter you full name">
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label required">Experience</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "experience" class="form-control " id="text" placeholder="Your experience" required>
+                    <input type="text"  pattern="^[ 0-9]{.}{1,2}$" name = "experience" class="form-control " id="text" placeholder="Your experience in years" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label required">CTC</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "ctc" class="form-control " id="text" placeholder="Your CTC" required>
+                    <input type="text"  pattern="^[ 0-9]{.}{1,}$" name = "ctc" class="form-control " id="text" placeholder="Your CTC" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -509,13 +509,13 @@
                 <div class="form-group row">
                   <label for="inputPassword" class="col-sm-2 col-form-label required">Referring To</label>
                   <div class="col-sm-3 col">
-                    <input type="text" name = "name" class="form-control" id="inputPassword" placeholder="name">
+                    <input type="text"  pattern="^[ A-z]{1,}$" name = "name" class="form-control" id="inputPassword" placeholder="name">
                   </div>
                   <div class="col-sm-3 col">
-                    <input type="text" name = "number" class="form-control" id="inputPassword" placeholder="phone no.">
+                    <input type="text" pattern="[6-9]{1}[0-9]{9}" name = "number" class="form-control" id="inputPassword" placeholder="phone no.">
                   </div>
                   <div class="col-sm-3 col">
-                    <input type="text" name = "email" class="form-control" id="inputPassword" placeholder="Email Id">
+                    <input type="text" pattern="[a-z0-9._%+-]+@gmail+\.[a-z]{3}$" name = "email" class="form-control" id="inputPassword" placeholder="Email Id">
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -554,7 +554,7 @@
                 <div class="form-group row justify-content-md-center">
                   <label for="staticEmail" class="col-sm-2 col-form-label required">Subject</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "subject" class="form-control " id="text" placeholder="Name of Subject " required>
+                    <input type="text" pattern="^[ A-z0-9]{1,}$" name = "subject" class="form-control " id="text" placeholder="Name of Subject " required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -599,7 +599,7 @@
                     <select name = "metwith" class="form-control" id="name" placeholder="Discussed with" required>
                       <option value = "">select</option>
                       {% for user in user %}
-                        <option value="{{ user.firstname }}">{{ user.firstname }}</option>
+                        <option value="{{ user.username }}">{{ user.username }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -610,7 +610,7 @@
                     <select name = "inviteby" class="form-control" id="name" placeholder="Invited By" required>
                       <option>select</option>
                       {% for user in user %}
-                        <option value="{{ user.firstname }}">{{ user.firstname }}</option>
+                        <option value="{{ user.username }}">{{ user.username }}</option>
                       {% endfor %}
                     </select>
                   </div>
@@ -631,7 +631,7 @@
                 <div class="form-group row justify-content-md-center">
                   <label  class="col-sm-2 col-form-label required">Topic Name</label>
                   <div class="col-sm-6">
-                    <input type="text" name = "topic" class="form-control " id="topic_name" placeholder="Discussed about" required>
+                    <input type="text" pattern="^[ A-z0-9]{1,}$" name = "topic" class="form-control " id="topic_name" placeholder="Discussed about" required>
                   </div>
                 </div>
                 <div class="form-group row justify-content-md-center">
@@ -679,13 +679,13 @@
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-3 col-form-label required">First Name</label>
                   <div class="col-sm-6 col justify-content-md-center">
-                    <input type="text" name = "firstname" class="form-control " id="topic_name" placeholder="Enter you First name">
+                    <input type="text" pattern="^[ A-z]{1,}$" name = "firstname" class="form-control " id="topic_name" placeholder="Enter you First name">
                   </div>
                 </div>
                 <div class="form-group row ">
                   <label for="staticEmail" class="col-sm-3 col-form-label required">Last Name</label>
                   <div class="col-sm-6  justify-content-md-center">
-                    <input type="text" name = "lastname" class="form-control " id="topic_name" placeholder="Enter you Last name">
+                    <input type="text" pattern="^[ A-z]{1,}$" name = "lastname" class="form-control " id="topic_name" placeholder="Enter you Last name">
                   </div>
                 </div>
                 <div class="form-group row ">
@@ -697,7 +697,7 @@
                 <div class="form-group row ">
                   <label for="staticEmail" class="col-sm-3 col-form-label required">Vistor Email'id</label>
                   <div class="col-sm-6 justify-content-md-center">
-                    <input type="text" name = "email" class="form-control " id="text" placeholder="Email Id" required>
+                    <input type="text" pattern="[a-z0-9._%+-]+@gmail+\.[a-z]{3}$" name = "email" class="form-control " id="text" placeholder="Email Id" required>
                   </div>
                 </div>
                 <div class="form-group row ">

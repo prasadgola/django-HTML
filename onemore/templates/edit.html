@@ -1,62 +1,234 @@
-{% load staticfiles %}
-<!DOCTYPE html>
 <html>
+
 <head>
-	<title>profile edit</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/signupstyle.css' %}">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Akronim' rel='stylesheet'>
+  <title>profile page</title>
 </head>
-	<body>
 
-	<h1>CHANGE DETAILS </h1>
+<body>
+    <div class="main">
+    <p class="profile" align="center">PROFILE DETAILS</p>
+        <form action="{% url 'edit' %}" method = "post" class="form1" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="main1">
+                <center><h2>personal Details</h2></center>
+                <input name = "username" class="un " type="text" placeholder="username">
+                <input name = "Email" class="un" type="email"  placeholder="Email">
+                <input name = "phonenumber" class="un" type="text" maxlength="10" placeholder="Mobile Number">
+                <center>Date of Birth</center>
+                <input name = "Date" class="un" type="date"><br>
+                <center>
+                    <input name="gender" type="radio" value="male" /> Male
+                    <input name="gender" type="radio" value="female" /> Female
+                </center><br>
+                <select class="un" name = "englishlevel" type="text" >
+                    <option value="-1" selected>English Level</option>
+                    <option value="Expert">Expert</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Beginner">Beginner</option>
+                </select>
+                <input class="un" name = "Location" type="text" placeholder="Current Location">
+                <textarea class="un" name = "Address" type="text" placeholder="Address"></textarea>
+            </div>
+            <div class="main2">
+                <center><h2>Job Details</h2></center>
+                <input class="un " name = "Profession" type="text" placeholder="Profession">
+                <input class="un" name = "company" type="text"  placeholder="company Name">
+                <center>Date of Joining</center>
+                <input class="un" name = "joindate" type="date">
+                <select class="un" name = "Experience" type="text" >
+                    <option value="-1" selected>Total Experience</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <textarea class="un" name = "skills" type="text" placeholder="Skills"></textarea>
+                <textarea class="un" name = "projects" type="text" placeholder="Projects "></textarea>
+            </div>
+            <div class="main3">
+                <center><h2>Education Details</h2></center>
+                <select class="un" name = "course" type="text" >
+                    <option value="-1" selected>Course</option>
+                    <option value="B.E/B.Tech">BE/BTECH</option>
+                    <option value="M.Tech">MTECH</option>
+                    <option value="BCA">BCA</option>
+                    <option value="MCA">MCA</option>
+                    <option value="BCOM">BCOM</option>
+                    <option value="MCOM">MCOM</option>  
+                </select>
+                <input name = "specialization" class="un" type="text" placeholder="Specialization">
+                <input name = "year" class="un" type="text"  placeholder="Year Of Passout">
+                <input name = "college" class="un" type="text" placeholder="Institute/Univesity Name">
+            </div>
+            <div class="main4">
+                <center><h2>upload</h2>Upload Resume</center>
+                <input name = "resume" class="un " type="file">
+                <center>Upload Photo</center>  
+                <input name = "image" class="un " type="file" accept="image/*">
+            </div>
+            <button class="submit">Submit</button>
+            <a class="btn" href="/profile">CANCEL</a>
+        </form>
+    </div>
+</body>
+     
+            
 
-	<div class="register">
-		<form action="{% url 'edit' %}" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-		<label> First name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="firstname" id="name" placeholder="{{firstname}}"><br><br>
-			<label> Last  name </label>&nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="lastname" id="name" placeholder="{{lastname}}"><br><br>
-			<label> DOB </label> &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			 
+    <style>
 
-			<input type="date" id="dob" name="birthday"><br><br>
-			<label> Gender     </label>
-			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="radio" id="male" name="gender" value="male">
-			<label for="male">Male</label>&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="radio" id="female" name="gender" value="female">
-			<label for="female">Female</label><br><br>
-			
-			<label> Mobile </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<select id="ph">
-					<option>+91</option>
-					<option>+92</option>
-					<option>+93</option>
-				</select>
-				<input type="number" name="phonenumber" id="num" placeholder="{{phonenumber}}"><br><br>
-			<label> Location </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-				<select id="loc">
-					<option>bangalore</option>
-					<option>mumbai</option>
-					<option>pune</option>
-				</select><br><br>
+    body {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .main {
+        background-image: #FFFFFF;
+        width: 90%;
+        height: 130%;
+        margin: 0em auto;
+        border: 2px solid rgb(80, 11, 117);
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    .main1 {
+        background-color: white;
+        width: 22%;
+        height: 73%;
+        margin: 0em auto;
+        border: 2px solid rgba(23, 216, 17, 0.911);
+        margin-left: 2%;
+        margin-top: 2%;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    .main2 {
+        background-color: white;
+        width: 22%;
+        height: 63%;
+        margin: 0em auto;
+        border: 2px solid rgba(23, 216, 17, 0.911);
+        margin-left: 27%;
+        margin-top:-52%;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    .main3 {
+        background-color: white;
+        width: 22%;
+        height: 42%;
+        margin: 0em auto;
+        border: 2px solid rgba(23, 216, 17, 0.911);
+        margin-left: 52%;
+        margin-top:-45%;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    .main4 {
+        background-color: white;
+        width: 22%;
+        height: 31%;
+        margin: 0em auto;
+        border: 2px solid rgba(23, 216, 17, 0.911);
+        margin-left:76%;
+        margin-top:-30%;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    
+    .profile {
+        padding-top: 0px;
+        color: rgb(80, 11, 117);
+        font-family:'Akronim' ;
+        font-weight: bold;
+        font-size: 38px;
+    }
+    
+    .un {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(228, 218, 218, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(17, 20, 192, 0.911);
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    }
+    
+    
+    .submit {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #9C27B0, #E040FB);
+        border: 0;
+        padding-left: 3%;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Akronim';
+        margin-left: 88%;
+        margin-bottom: -2%;
+        font-size: 18px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+    .btn {
+     cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #9C27B0, #E040FB);
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Akronim';
+        margin-left: 76%;
+        margin-top: 100px;
+        font-size: 18px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
 
-			<label> specialization </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="stream" id="branch" placeholder="{{specialization}}"><br><br>
-				
-			<label> Email ID</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="email" id="name" placeholder="username"><br><br>
-			<label> Password </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="password" name="password" id="name" placeholder="{{password}}"><br><br>
-			<label> confirm password </label>&nbsp
-			<input type="password" name="confirmpassword" id="name" placeholder="password"><br><br>
+    
+  
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+        
+        
 
-			<label> Add photo </label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			 
-  			<input type="file" id="img" name="image" accept="image/*"><br><br>
-  			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "submit" href="/signin" id="sub">
-		</form>
-	</div>
-	</body>
+</style>
+     
+</body>
+
 </html>
+     
+
+
+
+            
+ 
+ 
+ 
+
 

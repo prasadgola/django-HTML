@@ -18,20 +18,21 @@
             <div class="screen-body-item">
               <div class="app-form">
                 <div class="app-form-group">
-                  <input class="app-form-control" placeholder="NAME" placeholder="">
+                  <input class="app-form-control" pattern="^[ A-z0-9]{1,}$" name = "name" placeholder="NAME" >
                 </div>
                 <div class="app-form-group">
-                  <input class="app-form-control" placeholder="EMAIL">
+                  <input class="app-form-control" pattern="[a-z0-9._%+-]+@gmail+\.[a-z]{3}$" name = "email" placeholder="EMAIL">
                 </div>
                 <div class="app-form-group">
-                  <input class="app-form-control" placeholder="CONTACT NO">
+                  <input class="app-form-control" pattern="[6-9]{1}[0-9]{9}" name = "contact" placeholder="CONTACT NO">
                 </div>
                 <div class="app-form-group message">
-                  <textarea class="app-form-control" placeholder="MESSAGE"></textarea>
+                  <textarea class="app-form-control" name = "" placeholder="MESSAGE"></textarea>
                 </div>
                 <div class="btns">
                   <form action="home1.html" method="post">
-                  <button class="btn">CANCEL</button></form>
+                    <button class="btn">CANCEL</button>
+                  </form>
                   <button type = "submit" class="btn" onclick="myFunction()">SEND</button>
                   <script>
                       function myFunction() {

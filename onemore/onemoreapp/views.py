@@ -1,32 +1,23 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
-from onemoreapp.models import Gola,Person,users,onetoone, weeklypresentation, dailypresentation, socials, visitors, referralsgiven, referralstaken, jvtthankyou, job, sphere, trainings, interview, invited
+from onemoreapp.models import users,onetoone, weeklypresentation, dailypresentation, socials, visitors, referralsgiven, referralstaken, jvtthankyou, job, sphere, trainings, interview, invited, edittable
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 
 def signup(request):
-	if request.method == "POST" and request.FILES:
+	if request.method == "POST":
 		register = users()
-		register.firstname = request.POST['firstname']
-		register.lastname = request.POST['lastname']
-		register.birthday = request.POST['birthday']
-		register.gender = request.POST['gender']
-		register.phonenumber = request.POST['phonenumber']
-		register.specialization = request.POST['stream']
+		register.fullname = request.POST['fullname']
+		register.birthday = request.POST['Date']
+		register.phonenumber = request.POST['Phonenumber']
 		register.username = request.POST['email']
-		register.password = request.POST['Password']
-		register.image = request.FILES['image']
-		register.address = request.POST['address']
-		register.city = request.POST['city']
-		register.course = request.POST['Course']
-		register.pincode = request.POST['pincode']
+		register.password = request.POST['pass']
 		register.save()
 		user = User.objects.create_user(register.username,register.username,register.password)
 		user.save()
 		return HttpResponseRedirect(reverse('signin'))
-	return render(request,"signup.html")
 
 
 
@@ -57,10 +48,8 @@ def signout(request):
 
 
 def home(request):
-	# details = users.objects.get(user_id = request.user.id)
 	user = users.objects.all()
 	context = {
-	# 'details' : details,
 	'user' : user
 	}
 	return render(request,"home.html",context)
@@ -85,12 +74,12 @@ def viewreport(request):
 	s = socials.objects.raw(f'select socialsid from onemoreapp_socials where user_id = {request.user.id}')
 	v = visitors.objects.raw(f'select visitorsid from onemoreapp_visitors where user_id = {request.user.id}')
 	g = referralsgiven.objects.raw(f'select referralsgivenid  from onemoreapp_referralsgiven where user_id = {request.user.id}')
-	y = jvtthankyou.objects.raw(f'select jvtthankyouid  from onemoreapp_jvtthankyou where user_id = {request.user.id}')
-	j = job.objects.raw(f'select jobid  from onemoreapp_job where user_id = {request.user.id}')
-	s = sphere.objects.raw(f'select sphereid  from onemoreapp_sphere where user_id = {request.user.id}')
-	t = trainings.objects.raw(f'select trainingid  from onemoreapp_trainings where user_id = {request.user.id}')
-	m = interview.objects.raw(f'select interviewid  from onemoreapp_interview where user_id = {request.user.id}')
-	i = invited.objects.raw(f'select invitedid  from onemoreapp_invited where user_id = {request.user.id}')
+	y = jvtthankyou.objects.raw(f'select jvtthankyouid from onemoreapp_jvtthankyou where user_id = {request.user.id}')
+	j = job.objects.raw(f'select jobid from onemoreapp_job where user_id = {request.user.id}')
+	s = sphere.objects.raw(f'select sphereid from onemoreapp_sphere where user_id = {request.user.id}')
+	t = trainings.objects.raw(f'select trainingid from onemoreapp_trainings where user_id = {request.user.id}')
+	m = interview.objects.raw(f'select interviewid from onemoreapp_interview where user_id = {request.user.id}')
+	i = invited.objects.raw(f'select invitedid from onemoreapp_invited where user_id = {request.user.id}')
 	context = {
 	'o' : o,
 	'd' : d,
@@ -166,7 +155,7 @@ def visitor(request):
 		visitor_s = visitors()
 		visitor_s.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
 		visitor_s.visitorstopic = request.POST['topic']
-		visitor_s.visitorsnumber = request.POST['visnumber']
+		visitor_s.visitorsnumbers = request.POST['visnumber']
 		visitor_s.visitorsdate = request.POST['Date']
 		visitor_s.visitorspic = request.FILES['pic']
 		visitor_s.save()
@@ -313,52 +302,58 @@ def referralstakenview(request):
 	context = {'rt' : rt}
 	return render(request,"referralstakenview.html",context)
 
-	
-
-
 def profile(request):
-	p = users.objects.get(user_id = request.user.id)
+	p = edittable.objects.raw(f'select edittableid from onemoreapp_edittable where user_id = {request.user.id}')[0]
 	context = {'p' : p}
 	return render(request,"profile.html",context)
 
 def edit(request):
-	details = users.objects.get(user_id = request.user.id)
-	content = {
-		'username' : details.username,
-		'password' : details.password,
-		'firstname' : details.firstname,
-		'lastname' : details.lastname,
-		'birthday' : details.birthday,
-		'gender' : details.gender,
-		'phonenumber' : details.phonenumber,
-		'specialization' : details.specialization,
-		'image' : details.image.url,
-	}	
-
-	
-	if request.method == "POST" and request.FILES:
-		details.username = request.POST['email']
-		details.password = request.POST['password']
-		details.firstname = request.POST['firstname']
-		details.lastname = request.POST['lastname'] 
-		details.birthday = request.POST['birthday']
-		details.gender = request.POST['gender']
-		details.phonenumber = request.POST['phonenumber']
-		details.specialization = request.POST['stream']
-		details.image = request.FILES['image']
-		details.save()
-		return HttpResponseRedirect(reverse('edit'))
-	return render(request,"edit.html",content)
+	if request.method == "POST" and request.FILES:	
+		user = edittable()
+		user.user = users.objects.raw(f'select user_id from onemoreapp_users where user_id = {request.user.id}')[0]
+		user.name = request.POST['username']
+		user.email = request.POST['Email']
+		user.phonenumber = request.POST['phonenumber']
+		user.dob = request.POST['Date']
+		user.gender = request.POST['gender']
+		user.englishlevel = request.POST['englishlevel']
+		user.Location = request.POST['Location']
+		user.Address = request.POST['Address']
+		user.Profession = request.POST['Profession']
+		user.company = request.POST['company']
+		user.joindate = request.POST['joindate']
+		user.Experience = request.POST['Experience']
+		user.skills = request.POST['skills']
+		user.projects = request.POST['projects']
+		user.course = request.POST['course']
+		user.specialization = request.POST['specialization']
+		user.year = request.POST['year']
+		user.college = request.POST['college']
+		user.resume = request.FILES['resume']
+		user.image = request.FILES['image']
+		user.save()
+		return HttpResponseRedirect(reverse('profile'))
+	return render(request,"edit.html")
 
 
 def forgotpassword(request):
 	if request.method == "POST":
 		Email = request.POST['username']
-		email = EmailMessage('test2','Hi saiyadali how are you', to=[Email])
-		email.send()
-		return HttpResponseRedirect(reverse('signin'))
+		if users.objects.raw(f"select user_id from onemoreapp_users where username = '{Email}'")[0]:
+			context = users.objects.raw(f"select user_id from onemoreapp_users where username = '{Email}'")[0]
+			email = EmailMessage('Account password','your password is '+context.password, to=[Email])
+			email.send()
+			return HttpResponseRedirect(reverse('signin'))
+		else:
+			return HttpResponseRedirect(reverse('signin'))
 	return render(request,"forgotpassword.html")
 
 
 def needhelp(request):
+	if request.method == "POST":
+		need = need()
+		need.name = request.POST['name']
+		need.email = request.POST['email']
+		need.contact = request.POST['contact']
+		need.save()
 	return render(request,"need.html")

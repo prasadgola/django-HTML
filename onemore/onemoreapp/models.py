@@ -1,14 +1,6 @@
 from django.db import models
 
 
-class Person(models.Model):
-    first_nam = models.CharField(max_length=5)
-    last_nam = models.CharField(max_length=5)
-
-class Gola(models.Model):
-    first_nam = models.CharField(max_length=10)
-    last_nam = models.CharField(max_length=10)
-
 # class allconnected(models.Model):
 #     username = models.CharField(max_length=20)
 #     password = models.CharField(max_length=10)
@@ -17,17 +9,9 @@ class users(models.Model):
     user_id = models.AutoField(primary_key = True, null = False, blank = True)
     username = models.EmailField()
     password = models.CharField(max_length=20) # encryption required
-    firstname = models.CharField(max_length=20)
-    lastname = models.CharField(max_length=20)
+    fullname = models.CharField(max_length=20)
     birthday = models.DateField(null=True)
-    gender = models.CharField(max_length=10, null = True)
     phonenumber = models.CharField(max_length=20,null = True)
-    specialization = models.CharField(max_length=20)
-    address = models.CharField(max_length=200,null = True)
-    city = models.CharField(max_length=100,null = True)
-    course = models.CharField(max_length=100,null = True)
-    pincode = models.CharField(max_length=20,null = True)
-    image = models.ImageField(upload_to='profile_image',null = True, blank = True)
 
 
 class onetoone(models.Model):
@@ -36,10 +20,7 @@ class onetoone(models.Model):
     onemet = models.CharField(max_length=20,null = True)
     oneinvited = models.CharField(max_length=20,null = True)
     oneratings = models.CharField(max_length=20,null = True)
-    # partner = models.CharField(max_length=20,null = True)
     onetopic = models.CharField(max_length=100)
-    # oneduration = models.PositiveIntegerField(null=True, blank=True)
-    # onelocation = models.CharField(max_length=20,null = True)
     onedate = models.DateField(null = True)
 
 
@@ -157,6 +138,38 @@ class invited(models.Model):
     vcompanyname = models.CharField(max_length=100)
     email = models.EmailField()
     companyname = models.CharField(max_length=100)
+
+class need(models.Model):
+    trainingid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    contact = models.CharField(max_length=100)
+
+class edittable(models.Model):
+    edittableid = models.AutoField(primary_key = True, null = False, blank = True) # auto increment later and primary key
+    user = models.ForeignKey(users, on_delete=models.CASCADE, null = True, blank = True) # foreign key
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phonenumber = models.CharField(max_length=100)
+    dob = models.CharField(max_length=100)
+    gender = models.CharField(max_length=100)
+    englishlevel = models.CharField(max_length=100)
+    Location = models.CharField(max_length=100)
+    Address = models.CharField(max_length=100)
+    Profession = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    joindate = models.CharField(max_length=100)
+    Experience = models.CharField(max_length=100)
+    skills = models.CharField(max_length=100)
+    projects = models.CharField(max_length=100)
+    course = models.CharField(max_length=100)
+    specialization = models.CharField(max_length=100)
+    year = models.CharField(max_length=100)
+    college = models.CharField(max_length=100)
+    resume = models.FileField()
+    image = models.ImageField(upload_to='profile_image',null = True, blank = True)
+
 
 
 

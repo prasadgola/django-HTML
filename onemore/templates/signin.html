@@ -18,15 +18,15 @@
 <div class="container" id="container">
 	
 	<div class="form-container sign-up-container">
-		<form action="{% url 'signup' %}" methond = "post" onsubmit="return validate()">
+		<form action="{% url 'signup' %}" method = "post" onsubmit="return validate()">
 			{% csrf_token %}
 			<h3>Create Account</h3>
-			<input type="text" id = "fullname" name = "" placeholder="Full name">
-			<input type="email" id = "email" name = "" placeholder="Email">
-            <input type="date" id = "dob" name = "" placeholder="DOB">
-            <input type="text" id = "mobile" name = "" placeholder="Mobile number">
-            <input type="password" id = "pass" name = "" placeholder="password">
-            <input type="password" id = "rpass" name = "" placeholder="confirm password">
+			<input type="text" id = "fullname" name = "fullname" placeholder="Full name">
+			<input type="email" id = "email" name = "email" placeholder="Email">
+            <input type="date" id = "dob" name = "Date" placeholder="DOB">
+            <input type="text" id = "mobile" name = "Phonenumber" placeholder="Mobile number">
+            <input type="password" id = "pass" name = "pass" placeholder="password">
+            <input type="password" id = "rpass" name = "rpass" placeholder="confirm password">
             <button type="submit">Submit</button>
 		</form>
 	</div>
